@@ -31,7 +31,7 @@ setKPI.prototype = {
 
     var greenPercent = (comharApp.KPIData[this.KPINUMBER].GreenTo / 100);
     var yellowPercent = (comharApp.KPIData[this.KPINUMBER].YellowTo / 100);
-    var redPercent = (comharApp.KPIData[this.KPINUMBER].YellowFrom / 100);
+    var redPercent = (comharApp.KPIData[this.KPINUMBER].RedFrom / 100);
     var greenDays = Math.floor(totalDays * greenPercent);
     var yellowDays = Math.floor(totalDays * yellowPercent);
     var redDays = Math.floor(totalDays * redPercent);
@@ -49,7 +49,7 @@ setKPI.prototype = {
         $(this).css("background", "#ccff99");
 
       }
-      else if ($(this).text() > greenDays && $(this).text() <= redDays) {
+      else if ($(this).text() > greenDays && $(this).text() < redDays) {
 
           $(this).css("background", "#ffff99");
 
