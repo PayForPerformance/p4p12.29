@@ -17,7 +17,7 @@ function setKPI (number, dataGridContainer) {
 setKPI.prototype = {
 
   calculateMiliSeconds : function() {
-  return new Date(comharApp.KPIData[this.KPINUMBER].FiscalYearEndDate) - new Date(comharApp.KPIData[0].FiscalYearStartDate);
+  return new Date(comharApp.KPIData[this.KPINUMBER].FiscalYearEndDate) - new Date(comharApp.KPIData[this.KPINUMBER].FiscalYearStartDate);
   },
 
   calculateElapsedDays : function(miliSeconds) {
