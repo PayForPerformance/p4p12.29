@@ -1,0 +1,19 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PayForPerformance/Scripts/app/controller.js">
+    <Files>
+      <File FileName="PayForPerformance/index.html" Line="45" Column="45" />
+      <File FileName="PayForPerformance/Scripts/dashboard-1.0.0.js" Line="7" Column="7" />
+      <File FileName="PayForPerformance/Scripts/comhar-namespacing.js" Line="1" Column="1" />
+      <File FileName="PayForPerformance/Scripts/addDataGrid.js" Line="56" Column="56" />
+      <File FileName="PayForPerformance/Scripts/app/controller.js" Line="45" Column="45" />
+      <File FileName="PayForPerformance/Scripts/app/app.js" Line="5" Column="5" />
+      <File FileName="PayForPerformance/Scripts/jasmine/spec/ComharAppSpec.js" Line="60" Column="60" />
+      <File FileName="PayForPerformance/Scripts/program.js" Line="130" Column="130" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

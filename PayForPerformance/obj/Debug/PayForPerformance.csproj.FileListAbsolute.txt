@@ -1,0 +1,12 @@
+C:\Users\David Karasek\Downloads\PayForPerformance\PayForPerformance\PayForPerformance\bin\PayForPerformance.dll.config
+C:\Users\David Karasek\Downloads\PayForPerformance\PayForPerformance\PayForPerformance\bin\PayForPerformance.dll
+C:\Users\David Karasek\Downloads\PayForPerformance\PayForPerformance\PayForPerformance\bin\PayForPerformance.pdb
+C:\Users\David Karasek\Downloads\PayForPerformance\PayForPerformance\PayForPerformance\obj\Debug\PayForPerformance.csprojResolveAssemblyReference.cache
+C:\Users\David Karasek\Downloads\PayForPerformance\PayForPerformance\PayForPerformance\obj\Debug\PayForPerformance.dll
+C:\Users\David Karasek\Downloads\PayForPerformance\PayForPerformance\PayForPerformance\obj\Debug\PayForPerformance.pdb
+C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup\PayForPerformance\bin\PayForPerformance.dll.config
+C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup\PayForPerformance\bin\PayForPerformance.dll
+C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup\PayForPerformance\bin\PayForPerformance.pdb
+C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup\PayForPerformance\obj\Debug\PayForPerformance.csprojResolveAssemblyReference.cache
+C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup\PayForPerformance\obj\Debug\PayForPerformance.dll
+C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup\PayForPerformance\obj\Debug\PayForPerformance.pdb
