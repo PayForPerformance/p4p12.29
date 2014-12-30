@@ -441,7 +441,7 @@ comharApp.dxChart = {
       subtitle: {
         text: 'Percent Compliant'
       },
-      value: summaryData[3].CompliancePercent,
+      value: summaryData[0].CompliancePercent,
     });
   }
 }
