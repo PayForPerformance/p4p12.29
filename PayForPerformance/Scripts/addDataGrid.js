@@ -1,7 +1,8 @@
 comharApp.fixDates = function (encounterData) {
+  var betterDates;
   betterDates = encounterData.map(function (data) {
-    data["EncounterStartDate"] = new Date(data["EncounterStartDate"]);
-    data["EncounterEndDate"] = new Date(data["EncounterEndDate"]);
+    data.EncounterStartDate = new Date(data.EncounterStartDate);
+    data.EncounterEndDate = new Date(data.EncounterEndDate);
     return data;
   });
   return betterDates;
@@ -12,6 +13,7 @@ comharApp.fixDates = function (encounterData) {
 function setKPI (number, dataGridContainer) {
   this.KPINUMBER = number;
   this.dataGridContainer = dataGridContainer;
+  this.dayInfo = {};
 }
 
 setKPI.prototype = {
@@ -24,19 +26,33 @@ setKPI.prototype = {
   return (miliSeconds / 86400000);
   },
 
+  calculatePercentCompliant : function(numRecords, threshold) {
+    var totalRecords, totalComplaint, compliantPercent;
+
+    totalRecords = comharApp.EncounterData.length;
+
+    totalCompliant = 0;
+    comharApp.encounterData.forEach(function(item) {
+      if (item.ElapsedDays <= threshold) {
+        totalCompliant += 1;
+      }
+    });
+
+    compliantPercent = (totalCompliant / numRecords);
+    return compliantPercent;
+  },
+
+  calculateDays : function(totalDays, percent) {
+    return Math.floor(totalDays * percent);
+  },
+
+  calculatePercent : function(key) { 
+    return (comharApp.KPIData[this.KPINUMBER][key] / 100);
+  },
+
   colorData : function (elements) {
-    
-    var elapsedMiliSeconds = this.calculateMiliSeconds();
-    var totalDays = this.calculateElapsedDays(elapsedMiliSeconds);
-
-    var greenPercent = (comharApp.KPIData[this.KPINUMBER].GreenTo / 100);
-    var yellowPercent = (comharApp.KPIData[this.KPINUMBER].YellowTo / 100);
-    var redPercent = (comharApp.KPIData[this.KPINUMBER].RedFrom / 100);
-    var greenDays = Math.floor(totalDays * greenPercent);
-    var yellowDays = Math.floor(totalDays * yellowPercent);
-    var redDays = Math.floor(totalDays * redPercent);
-
     var $elements = elements;
+    var that = this;
 
     $elements.each(function (index) {
 
@@ -44,12 +60,12 @@ setKPI.prototype = {
         {
             return;
         }
-      if ($(this).text() <= greenDays) {
+      if ($(this).text() <= that.dayInfo.greenDays) {
         
         $(this).css("background", "#ccff99");
 
       }
-      else if ($(this).text() > greenDays && $(this).text() < redDays) {
+      else if ($(this).text() > that.dayInfo.greenDays && $(this).text() < that.dayInfo.redDays) {
 
           $(this).css("background", "#ffff99");
 
@@ -62,10 +78,10 @@ setKPI.prototype = {
     });
   },
 
-  setGrid : function() {
+  setGrid : function(dataSet) {
     var that = this;
     this.dataGridContainer.dxDataGrid({
-    dataSource: fixedDataSet,
+    dataSource: dataSet,
     columns: [
       { dataField: 'Clinician' },
       { dataField: 'PatientId' },
