@@ -362,19 +362,6 @@ tcmChart0301: function (container, summaryData) {
       text: summaryData[4].KpiId
     },
     plotBands: [{
-//      from: summaryData[4].GreenFrom,
-//      to: summaryData[4].GreenTo,
-//          color: '#55BF3B' // green
-//        }, {
-//          from: summaryData[4].YellowFrom,
-//          to: summaryData[4].YellowTo,
-//          color: '#DDDF0D' // yellow
-//        }, {
-//          from: summaryData[4].RedFrom,
-//          to: summaryData[4].RedTo,
-//          color: '#DF5353' // red
-//        }]
-     
           from: summaryData[4].RedTo,
           to: summaryData[4].RedFrom,
           color: '#DF5353' // red
@@ -427,6 +414,9 @@ comharApp.dxChart = {
         { startValue: summaryData[0]["YellowFrom"], endValue: summaryData[0]["YellowTo"], color: '#E6E200' },
         { startValue: summaryData[0]["GreenFrom"], endValue: summaryData[0]["GreenTo"], color: '#77DD77' }
         ]
+      },
+      size: {
+        height: 464
       },
       valueIndicator: {
         offset: 20,

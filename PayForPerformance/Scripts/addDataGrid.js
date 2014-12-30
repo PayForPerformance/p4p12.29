@@ -10,13 +10,36 @@ comharApp.fixDates = function (encounterData) {
 
 
 
-function setKPI (number, dataGridContainer) {
+function setKPI (number, dataGridContainer, dayInfo) {
   this.KPINUMBER = number;
   this.dataGridContainer = dataGridContainer;
-  this.dayInfo = {};
+  this.dayInfo = dayInfo || {};
+
+  return this;
 }
 
 setKPI.prototype = {
+
+  init : function() {
+    var elapsedMiliSeconds = this.calculateMiliSeconds();
+    var totalDays = this.calculateElapsedDays(elapsedMiliSeconds);
+    var greenPercent = this.calculatePercent('GreenTo');
+    var yellowPercent = this.calculatePercent('YellowTo');
+    var redPercent = this.calculatePercent('RedFrom');
+   
+    var greenDays = this.calculateDays(totalDays, greenPercent);
+    var yellowDays = this.calculateDays(totalDays, yellowPercent);
+
+    var redDays = this.calculateDays(totalDays, redPercent);
+
+    this.dayInfo.greenDays = greenDays;
+    this.dayInfo.yellowDays = yellowDays;
+    this.dayInfo.redDays = redDays;
+  },
+
+  yellowDays : function() {
+    return this.dayInfo.yellowDays;
+  },
 
   calculateMiliSeconds : function() {
   return new Date(comharApp.KPIData[this.KPINUMBER].FiscalYearEndDate) - new Date(comharApp.KPIData[this.KPINUMBER].FiscalYearStartDate);
@@ -27,18 +50,20 @@ setKPI.prototype = {
   },
 
   calculatePercentCompliant : function(numRecords, threshold) {
-    var totalRecords, totalComplaint, compliantPercent;
-
-    totalRecords = comharApp.EncounterData.length;
+    // Find total number of records in data set that are above threshold e.g.
+    // All those that Fall into Yellow and Green Category, Divided by Total Number of Records Contained in Data Set. 
+    var totalComplaint, compliantPercent, name = '';
 
     totalCompliant = 0;
     comharApp.encounterData.forEach(function(item) {
-      if (item.ElapsedDays <= threshold) {
+      if (item.ElapsedDays < threshold) {
+
         totalCompliant += 1;
       }
     });
 
-    compliantPercent = (totalCompliant / numRecords);
+    compliantPercent = ( totalCompliant * (100 / numRecords) );
+   
     return compliantPercent;
   },
 
@@ -65,7 +90,7 @@ setKPI.prototype = {
         $(this).css("background", "#ccff99");
 
       }
-      else if ($(this).text() > that.dayInfo.greenDays && $(this).text() < that.dayInfo.redDays) {
+      else if ($(this).text() > that.dayInfo.greenDays && $(this).text() <= that.dayInfo.yellowDays) {
 
           $(this).css("background", "#ffff99");
 

@@ -28,28 +28,19 @@ $(function () {
 
                 var fixedDataSet = comharApp.fixDates(encounterData);
                 var numRecords = encounterData.length;
-                console.log(numRecords);
+
                 comharApp.encounterData = fixedDataSet;
 
                 kpi1 = new setKPI(0, $('#gridContainer'));
+                kpi1.initialize();
 
                 kpi1.setGrid(fixedDataSet);
-                var elapsedMiliSeconds = kpi1.calculateMiliSeconds();
-                var totalDays = kpi1.calculateElapsedDays(elapsedMiliSeconds);
-                var greenPercent = kpi1.calculatePercent('GreenTo');
-                var yellowPercent = kpi1.calculatePercent('YellowTo');
-                var redPercent = kpi1.calculatePercent('RedFrom');
-               
-                var greenDays = kpi1.calculateDays(totalDays, greenPercent);
-                var yellowDays = kpi1.calculateDays(totalDays, yellowPercent);
-                var redDays = kpi1.calculateDays(totalDays, redPercent);
 
-                kpi1.dayInfo.greenDays = greenDays;
-                kpi1.dayInfo.yellowDays = yellowDays;
-                kpi1.dayInfo.redDays = redDays;
+                var threshold = kpi1.yellowDays();
+                var percentCompliant = kpi1.calculatePercentCompliant(numRecords, threshold);
 
-                var percentCompliant = kpi1.calculatePercentCompliant(numRecords, yellowPercent);
-                summaryData[0].CompliancePercent = (percentCompliant * 100)
+                summaryData[0].CompliancePercent = percentCompliant
+
                 setTimeout(function(){ //Color Data Initially
                    kpi1.colorData($('.elapsedDays'));
                   }, 1000);
