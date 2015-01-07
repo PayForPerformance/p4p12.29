@@ -45,7 +45,7 @@
 
       <div data-role="panel" id="leftPanel" data-position="left" data-display="push">
         <div ng-controller="programCtrl">
-          
+  
           <ul data-role="listview" ng-repeat="program in programs" jquery-create>
             <li><a ng-href="#{{ program.ProgramName }}">{{ program.ProgramName }}</a></li>
           </ul>
@@ -82,12 +82,13 @@
           <div style="padding:12px;">
             <div ng-controller="dateCtrl" popover-close>
               {{ selected.DataRangeName }}
-              <div data-theme="a" style="font-weight:bold;font-size:.8em;margin-bottom:6px;">Select Another Fiscal Year:</div>
-
+              <div data-theme="a" style="font-weight:bold;font-size:.8em;margin-bottom:6px;" jquery-create>Select Another Fiscal Year:</div>
+           
               <ul data-role="listview" class="fiscal-date-listview" ng-repeat="year in years" jquery-create>
                 <li ng-click="setSelected($index)"><a ng-href="#" class="fiscalYearListItem" >{{ year.FiscalYearStartDate | date : longDate }} - {{ year.FiscalYearEndDate | date : longDate }}</a></li>
               </ul>
             </div>
+
 
           </div>
         </div>
@@ -118,7 +119,7 @@
               <h3>Encounter Details</h3>
               <div id="gridContainer" class="gridContainer" style="width:100%; height:auto;"></div>
 
-              <button id="download-CSV" type="submit">Download as CSV</button>
+              <center><button id="download-CSV" type="submit" style="max-width:400px;">Download as CSV</button></center>
             </div>
 
           
