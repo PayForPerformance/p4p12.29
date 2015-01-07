@@ -97,7 +97,7 @@
     });
 },
 
-tcmChart0201: function (container, summaryData) {
+tcmChart02: function (container, summaryData) {
   container.highcharts({
     chart: {
       type: 'gauge',
@@ -192,7 +192,7 @@ tcmChart0201: function (container, summaryData) {
   });
 },
 
-tcmChart0301: function (container, summaryData) {
+tcmChart03: function (container, summaryData) {
   container.highcharts({
 
   chart: {
@@ -290,7 +290,8 @@ tcmChart0301: function (container, summaryData) {
 
 },
 
-  tcmChart0401: function (container, summaryData) {
+  tcmChart04: function (container, summaryData) {
+
   container.highcharts({
 
   chart: {
