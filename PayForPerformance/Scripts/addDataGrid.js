@@ -20,7 +20,7 @@ function setKPI (number, dataGridContainer, dayInfo) {
 
 setKPI.prototype = {
 
-  init : function() {
+  init : function init() {
     var elapsedMiliSeconds = this.calculateMiliSeconds();
     var totalDays = this.calculateElapsedDays(elapsedMiliSeconds);
     var greenPercent = this.calculatePercent('GreenTo');
@@ -42,22 +42,21 @@ setKPI.prototype = {
   },
 
   calculateMiliSeconds : function() {
-  return new Date(comharApp.KPIData[this.KPINUMBER].FiscalYearEndDate) - new Date(comharApp.KPIData[this.KPINUMBER].FiscalYearStartDate);
+    return new Date(comharApp.KPIData[this.KPINUMBER].FiscalYearEndDate) - new Date(comharApp.KPIData[this.KPINUMBER].FiscalYearStartDate);
   },
 
   calculateElapsedDays : function(miliSeconds) {
-  return (miliSeconds / 86400000);
+    return (miliSeconds / 86400000);
   },
 
   calculatePercentCompliant : function(numRecords, threshold) {
     // Find total number of records in data set that are above threshold e.g.
-    // All those that Fall into Yellow and Green Category, Divided by Total Number of Records Contained in Data Set. 
+    // all records that are cointained in Yellow and Green Category, Divided by Total Number of Records Contained in Data Set. 
     var totalComplaint, compliantPercent, name = '';
 
     totalCompliant = 0;
     comharApp.encounterData.forEach(function(item) {
       if (item.ElapsedDays < threshold) {
-
         totalCompliant += 1;
       }
     });
