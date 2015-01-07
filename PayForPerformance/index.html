@@ -15,6 +15,7 @@
 
   <script src="Scripts/globalize.min.js"></script>
   <script src="Scripts/angular-1.3.5.min.js"></script>
+  <script src="Scripts/angular-sanitize.min.js"></script>
   <script src="Scripts/highcharts.js"></script>
   <script src="Scripts/highcharts-more.js"></script>
   <script src="Scripts/json2csv.js"></script>
@@ -44,6 +45,7 @@
 
       <div data-role="panel" id="leftPanel" data-position="left" data-display="push">
         <div ng-controller="programCtrl">
+          
           <ul data-role="listview" ng-repeat="program in programs" jquery-create>
             <li><a ng-href="#{{ program.ProgramName }}">{{ program.ProgramName }}</a></li>
           </ul>
@@ -144,76 +146,13 @@
           </div>
         </div>
         </div>
-        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="true" data-theme="b" data-content-theme="a">
-          <h3 id="tcm-02-01" class="kpiContainer">TCM 02:Service Delivery and Continuity of Care</h3>
-          <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="false">
+        <div ng-controller="comharCtrl" >
+          <div >
+            <div ng-repeat="kpi in namesandIds" jquery-create>
+            <div test-kpi >
 
-            <h3>Percent of authorizations having at least two 31 day gaps between services</h3>
-            <div class="ui-grid-a ui-responsive">
-              <div class="ui-block-a">
-                <div class="ui-bar ui-bar-a" style="background-color:white;">
-                  <div id="chart-TCM-02-01" class="kpiChart"></div>
-                </div>
-              </div>
-              <div class="ui-block-b">
-                <div class="ui-bar ui-bar-c">
-                  <div ng-controller="comharCtrl">
-                    <div data-role="collapsible" ng-repeat ="item in data.slice(8, 16)" jquery-create>
-                      <h3>{{ item.Heading }}</h3>
-                      <p>{{ item.Text }}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
-        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="true" data-theme="b" data-content-theme="a">
-          <h3 id="tcm-03-01" class="kpiContainer">TCM 03:Assessment and Service Delivery</h3>
-          <div data-role="collapsible" data-collapsed-icon="arrow-r" data-theme="b" data-collapsed="false">
-            <h3>Percent of persons having a least one in-patient admission</h3>
-            <div class="ui-grid-a ui-responsive">
-              <div class="ui-block-a">
-                <div class="ui-bar ui-bar-a" style="background-color:white;">
-                  <div id="chart-TCM-03-01" class="kpiChart"></div>
-                </div>
-              </div>
-              <div class="ui-block-b">
-                <div class="ui-bar ui-bar-c">
-                  <div ng-controller="comharCtrl">
-                    <div data-role="collapsible" ng-repeat ="item in data.slice(16, 24)" jquery-create>
-                      <h3>{{ item.Heading }}</h3>
-                      <p>{{ item.Text }}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="true" data-theme="b" data-content-theme="a">
-          <h3 id="tcm-04-01" class="kpiContainer">TCM 04:Assessment and Service Delivery</h3>
-          <div data-role="collapsible" data-collapsed-icon="arrow-r" data-theme="b" data-collapsed="false">
-            <h3>Percent having a TCM contact within 2 days of inpatient admission</h3>
-            <div class="ui-grid-a ui-responsive">
-              <div class="ui-block-a">
-                <div class-"ui-bar ui-bar-a" style="background-color:white;">
-                  <div id="chart-TCM-04-01" class="kpiChart"></div>
-                </div>
-              </div>
-              <div class="ui-block-b">
-                <div class="ui-bar ui-bar-c">
-                  <div ng-controller="comharCtrl">
-                    <div data-role="collapsible" ng-repeat ="item in data.slice(24, 31)" jquery-create>
-                      <h3>{{ item.Heading }}</h3>
-                      <p>{{ item.Text }}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <div data-role="footer" data-position="fixed">
         <div style="width:100%;border-top:solid 3px white;"></div>
