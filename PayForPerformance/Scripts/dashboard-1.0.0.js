@@ -65,9 +65,7 @@ $(function () {
                 });
               
                $('#download-CSV').click(function() {
-                  var jsonString, csvString;
-                  jsonString = JSON.stringify(encounterData);
-                  csvConverter.convert(jsonString);
+                  csvConverter.convert(encounterData);
                 });
 
                 comharApp.highCharts.tcmChart0102($('#chart-TCM-01-02'), summaryData);
@@ -87,7 +85,7 @@ $(function () {
                   var element = "#chart-" + id;
                   var $element = $(element);
                   //TEMPORARY BUGFIX
-                  if ( id !== 1 ) window["comharApp"]["highCharts"][functionName]($element, summaryData);
+                  if ( id !== 1 ) window.comharApp.highCharts[functionName]($element, summaryData);
                 } 
               });
            }, 1);
