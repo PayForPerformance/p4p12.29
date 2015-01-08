@@ -83,9 +83,10 @@ $(function () {
                 var re = /\d/;
 
                 if ( re.test(id) ) {
-                  var functionName = "tcmChart0" + id
-                  var element = "#chart-" + id
-                  window["comharApp"]["highCharts"][functionName]($(element), summaryData);
+                  var functionName = "tcmChart0" + id;
+                  var element = "#chart-" + id;
+                  var $element = $(element);
+                  window["comharApp"]["highCharts"][functionName]($element, summaryData);
                 } 
               });
            }, 1);
