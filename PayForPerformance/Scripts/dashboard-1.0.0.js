@@ -42,28 +42,8 @@ $(function () {
                 //TODO TEMPORARY
                 summaryData[0].CompliancePercent = percentCompliant;
 
-                setTimeout(function(){ //Color Data Initially
-                   kpi1.colorData($('.elapsedDays'));
-                  }, 1000);
-                
-                setTimeout(function () { //Delay until chart container is visible in DOM. 
-                    comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), summaryData);
-
-                }, 1);
-
-                $('.dx-datagrid-action-cursor').on('click', function () {
-                  setTimeout(function () {
-                    kpi1.colorData();
-                  }, 50);
-                });
-
-                $('.dx-pages').click(function (){ //Set Event Listener for Pagination
-      
-                  setTimeout(function() {
-                    kpi1.colorData($('.elapsedDays'));  
-                  }, 50);
-                });
-              
+                comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), summaryData);
+   
                $('#download-CSV').click(function() {
                   csvConverter.convert(encounterData);
                 });
@@ -85,10 +65,12 @@ $(function () {
                   var element = "#chart-" + id;
                   var $element = $(element);
                   //TEMPORARY BUGFIX
-                  if ( id !== 1 ) window.comharApp.highCharts[functionName]($element, summaryData);
+                  if ( id !== 1 ) { 
+                    window.comharApp.highCharts[functionName]($element, summaryData);
+                  }
                 } 
               });
-           }, 1);
+           }, 50);
         });
     }
     catch (err)

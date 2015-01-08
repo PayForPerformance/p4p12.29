@@ -74,8 +74,10 @@ setKPI.prototype = {
     return (comharApp.KPIData[this.KPINUMBER][key] / 100);
   },
 
-  colorData : function (elements) {
-    var $elements = elements;
+  colorData : function () {
+    
+    var $elements = this.dataGridContainer.find('.elapsedDays');
+
     var that = this;
 
     $elements.each(function (index) {
@@ -103,7 +105,7 @@ setKPI.prototype = {
   },
 
   setGrid : function(dataSet) {
-    var that = this;
+    var _this = this;
     this.dataGridContainer.dxDataGrid({
     dataSource: dataSet,
     columns: [
@@ -119,7 +121,7 @@ setKPI.prototype = {
     pager: { visible: true },
     paging: { pageSize: 7 },
     contentReadyAction: function() {
-      that.colorData($('.elapsedDays'));
+      _this.colorData();
     },
     width: function(){
       return "100%";
