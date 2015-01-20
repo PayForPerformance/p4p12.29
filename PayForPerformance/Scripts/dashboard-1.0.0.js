@@ -21,6 +21,7 @@ $(function () {
 //  var encounterDetailSourceUrl = baseUrl + "PayForPerformanceWebApi/api/encounterDetail"
     try {
         $.getJSON(summarySourceUrl, function (summaryData) {
+           $('#leftPanel > .ui-panel-inner').css({'padding': '0em'});
            comharApp.KPIData = summaryData;
 
             $('#tcm-01-01').on('click', function () {
