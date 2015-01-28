@@ -15,7 +15,7 @@ $(function () {
   });
 
    var baseUrl = window.location.protocol + '//' + window.location.hostname + "/";
-   var encounterDetailSourceUrl = "Scripts/encounterDetail.js";
+   var encounterDetailSourceUrl = "Scripts/encounterDetail2.js";
    var summarySourceUrl = "Scripts/summary.js";
 //  var summarySourceUrl = baseUrl + "PayForPerformanceWebApi/api/summary"
 //  var encounterDetailSourceUrl = baseUrl + "PayForPerformanceWebApi/api/encounterDetail"
@@ -49,8 +49,10 @@ $(function () {
 
                 kpi1 = new setKPI(0, $('#gridContainer'));
                 kpi1.init();
-
-                kpi1.setGrid(fixedDataSet);
+                comharApp.InitializeYearFilter = (function() {
+                  filteredData = comharApp.filterYear();
+                  kpi1.setGrid(filteredData);
+                })();
 
                 var threshold = kpi1.yellowDays();
                 var percentCompliant = kpi1.calculatePercentCompliant(numRecords, threshold);
@@ -59,6 +61,7 @@ $(function () {
                 summaryData[0].CompliancePercent = percentCompliant;
 
                 comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), summaryData);
+
    
                $('#download-CSV').click(function() {
                   csvConverter.convert(encounterData);

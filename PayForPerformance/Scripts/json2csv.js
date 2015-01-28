@@ -1,8 +1,14 @@
+//set up namespacing. 
+var csvConverter;
+csvConverter = csvConverter || {};
+
 (function() {
+  "use strict";
   return csvConverter = {
     convert: function (objArray) {
       var array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
       //Assume that the headers of the document are equal to the keys in the JSON object. 
+      array = comharApp.EncounterDataFilter ? this.filterDays(array) : array
       var headers = Object.keys(array[0]);
       var stringWithHeaders = this.parseHeaders(headers, array);
       var parsedString = this.parseBody(array, stringWithHeaders);
@@ -54,6 +60,11 @@
         return window.open("data:text/csv;charset=utf-8," + escape(csvString));
       }
     csvString = null;
+    },
+
+    filterDays: function(array) {
+      return _.filter(array, function(item) { return item.ElapsedDays > 0 });
     }
+
   }
 }.call(this));

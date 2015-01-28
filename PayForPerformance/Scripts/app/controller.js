@@ -30,10 +30,14 @@ comharControllers.controller('dateCtrl', ['$rootScope', '$scope', '$http',
     $http.get('Scripts/DateLookup.js').success(function(data) {
       
       $scope.years = angular.fromJson(data);
-      $rootScope.selected = $scope.years[0];
+      $rootScope.selected = $scope.years[2];
+
 
       $scope.setSelected = function(index) {
         $rootScope.selected = $scope.years[index];
+        comharApp.EncounterYear = $rootScope.selected;
+        comharApp.InitializeYearFilter();
+
       };
      
 

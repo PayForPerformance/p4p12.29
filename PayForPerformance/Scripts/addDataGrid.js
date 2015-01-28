@@ -7,6 +7,9 @@ comharApp.fixDates = function (encounterData) {
   });
   return betterDates;
 };
+comharApp.filterYear = function() {
+  return _.filter(comharApp.encounterData, function(item) { return item.EncounterStartDate >= new Date(comharApp.EncounterYear.FiscalYearStartDate) && item.EncounterEndDate < new Date(comharApp.EncounterYear.FiscalYearEndDate) }); 
+};
 
 
 
@@ -104,7 +107,6 @@ setKPI.prototype = {
       }
     });
   },
-
   setGrid : function(dataSet) {
     var _this = this;
     this.dataGridContainer.dxDataGrid({
