@@ -23,7 +23,22 @@ $(function () {
         $.getJSON(summarySourceUrl, function (summaryData) {
            $('#leftPanel > .ui-panel-inner').css({'padding': '0em'});
            comharApp.KPIData = summaryData;
-
+           $('#add-visit-filter').dxButton({
+            text: 'Filter Same Day Visists',
+           });
+           $('#remove-visit-filter').dxButton({
+            text: 'Remove Filter'
+           });
+           $('#add-visit-filter').click(function() {
+            var dataGrid = $('#gridContainer').dxDataGrid('instance');
+            dataGrid.filter(['ElapsedDays', '>', 1]);
+            comharApp.EncounterDataFilter = true;
+           });
+           $('#remove-visit-filter').click(function() {
+            var dataGrid = $('#gridContainer').dxDataGrid('instance');
+            dataGrid.clearFilter();
+            comharApp.EncounterDataFilter = false;
+           });
             $('#tcm-01-01').on('click', function () {
               $.getJSON(encounterDetailSourceUrl, function (encounterData) {
 

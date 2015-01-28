@@ -21,6 +21,7 @@ function setKPI (number, dataGridContainer, dayInfo) {
 setKPI.prototype = {
 
   init : function init() {
+    console.log(this);
     var elapsedMiliSeconds = this.calculateMiliSeconds();
     var totalDays = this.calculateElapsedDays(elapsedMiliSeconds);
     var greenPercent = this.calculatePercent('GreenTo');
@@ -86,16 +87,16 @@ setKPI.prototype = {
         {
             return;
         }
-      if ($(this).text() <= that.dayInfo.greenDays) {
+      if ($(this).text() <= that.dayInfo.yellowDays) { //TODO- discuss renaming this. 
         
         $(this).css("background", "#ccff99");
 
       }
-      else if ($(this).text() > that.dayInfo.greenDays && $(this).text() <= that.dayInfo.yellowDays) {
+//      else if ($(this).text() > that.dayInfo.greenDays && $(this).text() <= that.dayInfo.yellowDays) {
+//
+//          $(this).css("background", "#ffff99");
 
-          $(this).css("background", "#ffff99");
-
-      }
+//      }
       else {
 
           $(this).css("background", "#CC0000");
