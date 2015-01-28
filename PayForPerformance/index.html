@@ -2,16 +2,20 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
+ 
  <link rel="stylesheet" href="stylesheets/jquery.mobile.icons.min.css" />
  <link rel="stylesheet" href="stylesheets/jquery.mobile.structure-1.4.2.min.css" />
  <link href="stylesheets/jquery.mobile.structure-1.4.2.min.css" rel="stylesheet" />
+ <link rel="stylesheet" type="text/css" href="stylesheets/Comhar-misc.css" />
 
   <link rel="stylesheet" type="text/css" href="stylesheets/dx-common.css" />
   <link rel="stylesheet" type="text/css" href="stylesheets/dx-light.css" />
 
+
   <script src="Scripts/jquery-2.1.3.min.js"></script>
   <script src="Scripts/jquery.mobile-1.4.2.min.js"></script>
+
+  <script src="Scripts/underscore.min.js"></script>
 
   <script src="Scripts/globalize.min.js"></script>
   <script src="Scripts/angular-1.3.5.min.js"></script>
@@ -36,12 +40,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
   <link rel="stylesheet" href="stylesheets/comhar-2.0.6.min.css" />
 
-
 </head>
 <body ng-app="ComharNGApp">
 
 
-  <form id="form1" >
+  <form id="form1">
 
     <div data-role="page" id="ETCM" data-theme="c" data-dom-cache="false">
 
@@ -120,8 +123,15 @@
             <div data-role="collapsible">
               <h3>Encounter Details</h3>
               <div id="gridContainer" class="gridContainer" style="width:100%; height:auto;"></div>
-
-              <center><button id="download-CSV" type="submit" style="max-width:400px;">Download as CSV</button></center>
+              <div style="height:60px; width:100%">
+                <ul class="filter-buttons">
+                  <li><div id="add-visit-filter" style="max-width:200px"></div></li>
+                  <li><div id="remove-visit-filter" style="max-width:200px"></div></li>
+                </ul>
+              </div>
+              <div style="width:100%">
+                <center><button id="download-CSV" type="submit" style="max-width:400px;">Download as CSV</button></center>
+              </div>
             </div>
 
           

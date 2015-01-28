@@ -1,0 +1,8 @@
+﻿.filter-buttons {
+  list-style-type: none; 
+  float:right;
+}
+
+.filter-buttons li {
+  display: inline-block;
+}

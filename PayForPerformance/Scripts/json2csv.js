@@ -8,6 +8,7 @@ csvConverter = csvConverter || {};
     convert: function (objArray) {
       var array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
       //Assume that the headers of the document are equal to the keys in the JSON object. 
+      array = comharApp.filterYear(array); // filter results based on year set. 
       array = comharApp.EncounterDataFilter ? this.filterDays(array) : array
       var headers = Object.keys(array[0]);
       var stringWithHeaders = this.parseHeaders(headers, array);
@@ -64,6 +65,9 @@ csvConverter = csvConverter || {};
 
     filterDays: function(array) {
       return _.filter(array, function(item) { return item.ElapsedDays > 0 });
+    },
+    filterYear: function(array) {
+      return _.filter(array, function(item) { return item.EncounterStartDate >= new Date(comharApp.EncounterYear.FiscalYearStartDate) && item.EncounterEndDate < new Date(comharApp.EncounterYear.FiscalYearEndDate) });
     }
 
   }

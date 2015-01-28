@@ -36,7 +36,10 @@ comharControllers.controller('dateCtrl', ['$rootScope', '$scope', '$http',
       $scope.setSelected = function(index) {
         $rootScope.selected = $scope.years[index];
         comharApp.EncounterYear = $rootScope.selected;
-        comharApp.InitializeYearFilter();
+        kpi1 = new setKPI(0, $('#gridContainer'));
+        kpi1.init();
+        filteredData = comharApp.filterYear();
+        kpi1.setGrid(filteredData);
 
       };
      

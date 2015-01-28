@@ -49,11 +49,9 @@ $(function () {
 
                 kpi1 = new setKPI(0, $('#gridContainer'));
                 kpi1.init();
-                comharApp.InitializeYearFilter = (function() {
-                  filteredData = comharApp.filterYear();
-                  kpi1.setGrid(filteredData);
-                })();
-
+                filteredData = comharApp.filterYear();
+                kpi1.setGrid(filteredData);
+              
                 var threshold = kpi1.yellowDays();
                 var percentCompliant = kpi1.calculatePercentCompliant(numRecords, threshold);
                 
