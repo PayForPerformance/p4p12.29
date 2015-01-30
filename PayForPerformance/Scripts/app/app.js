@@ -19,15 +19,6 @@ ComharNGApp.directive('jqueryCreate', function() {
   };
 });
 
-ComharNGApp.directive('jqueryTwo', function() {
- return {
-   link: function($scope, $element, $attr) {
-      $element.trigger('create');
-    }
-  };
-});
-
-
 ComharNGApp.directive('testKpi', function($compile) {
   return {
     link: function($scope, $element, $attr){

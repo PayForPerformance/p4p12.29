@@ -38,8 +38,9 @@ comharControllers.controller('dateCtrl', ['$rootScope', '$scope', '$http',
         comharApp.EncounterYear = $rootScope.selected;
         kpi1 = new setKPI(0, $('#gridContainer'));
         kpi1.init();
-        filteredData = comharApp.filterYear();
-        kpi1.setGrid(filteredData);
+        comharApp.ActiveData = comharApp.filterYear();
+        kpi1.setGrid(comharApp.ActiveData);
+        comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.summaryData);
 
       };
      

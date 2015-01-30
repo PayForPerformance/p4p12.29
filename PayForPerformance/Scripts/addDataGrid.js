@@ -11,6 +11,10 @@ comharApp.filterYear = function() {
   return _.filter(comharApp.encounterData, function(item) { return item.EncounterStartDate >= new Date(comharApp.EncounterYear.FiscalYearStartDate) && item.EncounterEndDate < new Date(comharApp.EncounterYear.FiscalYearEndDate) }); 
 };
 
+comharApp.filterSameDay = function() {
+  return _.filter(comharApp.ActiveData, function(item) { return item.ElapsedDays > 0 });
+};
+
 
 
 function setKPI (number, dataGridContainer, dayInfo) {
@@ -21,10 +25,19 @@ function setKPI (number, dataGridContainer, dayInfo) {
   return this;
 }
 
+comharApp.InitializeChart = function (kpi) {
+    var threshold = kpi.yellowDays();
+    var numRecords = comharApp.ActiveData.length;
+    var percentCompliant = kpi.calculatePercentCompliant(numRecords, threshold);
+
+    //TODO TEMPORARY
+    comharApp.KPIData[0].CompliancePercent = percentCompliant;
+    comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
+}
+
 setKPI.prototype = {
 
   init : function init() {
-    console.log(this);
     var elapsedMiliSeconds = this.calculateMiliSeconds();
     var totalDays = this.calculateElapsedDays(elapsedMiliSeconds);
     var greenPercent = this.calculatePercent('GreenTo');
@@ -59,7 +72,7 @@ setKPI.prototype = {
     var totalComplaint, compliantPercent, name = '';
 
     totalCompliant = 0;
-    comharApp.encounterData.forEach(function(item) {
+    comharApp.ActiveData.forEach(function(item) {
       if (item.ElapsedDays < threshold) {
         totalCompliant += 1;
       }

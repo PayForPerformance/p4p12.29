@@ -21,6 +21,7 @@ $(function () {
 //  var encounterDetailSourceUrl = baseUrl + "PayForPerformanceWebApi/api/encounterDetail"
     try {
         $.getJSON(summarySourceUrl, function (summaryData) {
+          comharApp.summaryData = summaryData;
            $('#leftPanel > .ui-panel-inner').css({'padding': '0em'});
            comharApp.KPIData = summaryData;
            $('#add-visit-filter').dxButton({
@@ -29,39 +30,37 @@ $(function () {
            $('#remove-visit-filter').dxButton({
             text: 'Remove Filter'
            });
-           $('#add-visit-filter').click(function() {
-            var dataGrid = $('#gridContainer').dxDataGrid('instance');
-            dataGrid.filter(['ElapsedDays', '>', 1]);
-            comharApp.EncounterDataFilter = true;
-           });
-           $('#remove-visit-filter').click(function() {
-            var dataGrid = $('#gridContainer').dxDataGrid('instance');
-            dataGrid.clearFilter();
-            comharApp.EncounterDataFilter = false;
-           });
+
             $('#tcm-01-01').on('click', function () {
               $.getJSON(encounterDetailSourceUrl, function (encounterData) {
 
                 var fixedDataSet = comharApp.fixDates(encounterData);
-                var numRecords = encounterData.length;
-
                 comharApp.encounterData = fixedDataSet;
-
+                comharApp.ActiveData = comharApp.filterYear();
+           
                 kpi1 = new setKPI(0, $('#gridContainer'));
                 kpi1.init();
-                filteredData = comharApp.filterYear();
-                kpi1.setGrid(filteredData);
-              
-                var threshold = kpi1.yellowDays();
-                var percentCompliant = kpi1.calculatePercentCompliant(numRecords, threshold);
-                
-                //TODO TEMPORARY
-                summaryData[0].CompliancePercent = percentCompliant;
 
-                comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), summaryData);
+                kpi1.setGrid(comharApp.ActiveData);
+                comharApp.InitializeChart(kpi1);
+                comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
+                $('#add-visit-filter').click(function() {
+                  var dataGrid = $('#gridContainer').dxDataGrid('instance');
+                  dataGrid.filter(['ElapsedDays', '>', 1]);
+                  comharApp.EncounterDataFilter = true;
+                  comharApp.ActiveData = comharApp.filterSameDay();
+                  comharApp.InitializeChart(kpi1);
+                });
 
-   
-               $('#download-CSV').click(function() {
+                $('#remove-visit-filter').click(function() {
+                  var dataGrid = $('#gridContainer').dxDataGrid('instance');
+                  dataGrid.clearFilter();
+                  comharApp.ActiveData = comharApp.filterYear();
+                  comharApp.InitializeChart(kpi1);
+                  comharApp.EncounterDataFilter = false;
+                });
+
+                $('#download-CSV').click(function() {
                   csvConverter.convert(encounterData);
                 });
 
