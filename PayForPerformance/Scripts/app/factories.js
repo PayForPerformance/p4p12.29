@@ -9,7 +9,7 @@ comharFunctions.factory('comharFunctions', function() {
       var programIds = _.uniq(data.map(function(item) { return item.P4PInfoId; }));
 
       var namesandIds = Array.zip(programIds, programNames, function(id, name) {
-        return { 'programId' : id, 'programName' : name }
+        return { 'programId' : id, 'programName' : name };
       });
 
       //TODO

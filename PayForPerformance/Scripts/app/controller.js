@@ -36,12 +36,11 @@ comharControllers.controller('dateCtrl', ['$rootScope', '$scope', '$http',
       $scope.setSelected = function(index) {
         $rootScope.selected = $scope.years[index];
         comharApp.EncounterYear = $rootScope.selected;
-        kpi1 = new Program(0, $('#gridContainer'));
-        kpi1.init();
         comharApp.ActiveData = comharApp.filterYear();
-        kpi1.setGrid(comharApp.ActiveData);
-        comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.summaryData);
-        kpi1.loadChart();
+        program = new Program(0, $('#gridContainer'));
+        program.init()
+               .setGrid(comharApp.ActiveData)
+               .loadChart();
 
       };
      

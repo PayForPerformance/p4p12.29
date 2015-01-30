@@ -56,6 +56,7 @@ Program.prototype = {
     this.dayInfo.greenDays = greenDays;
     this.dayInfo.yellowDays = yellowDays;
     this.dayInfo.redDays = redDays;
+    return this;
   },
 
   yellowDays : function() {
@@ -147,6 +148,7 @@ Program.prototype = {
         return "100%";
       }
     });
+    return this;
   }, 
   loadChart : function () {
     var threshold = this.yellowDays();
@@ -156,6 +158,7 @@ Program.prototype = {
     //TODO TEMPORARY
     comharApp.KPIData[0].CompliancePercent = percentCompliant;
     comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
+    return this;
   }
 }
 

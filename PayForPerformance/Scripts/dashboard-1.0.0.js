@@ -39,10 +39,9 @@ $(function () {
                 comharApp.ActiveData = comharApp.filterYear();
            
                 kpi1 = new Program(0, $('#gridContainer'));
-                kpi1.init();
-
-                kpi1.setGrid(comharApp.ActiveData);
-                kpi1.loadChart();
+                kpi1.init()
+                    .setGrid(comharApp.ActiveData)
+                    .loadChart();
                 comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
                 $('#add-visit-filter').click(function() {
                   var dataGrid = $('#gridContainer').dxDataGrid('instance');
