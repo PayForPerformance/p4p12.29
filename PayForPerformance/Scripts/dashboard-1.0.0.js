@@ -38,30 +38,30 @@ $(function () {
                 comharApp.encounterData = fixedDataSet;
                 comharApp.ActiveData = comharApp.filterYear();
            
-                kpi1 = new setKPI(0, $('#gridContainer'));
+                kpi1 = new Program(0, $('#gridContainer'));
                 kpi1.init();
 
                 kpi1.setGrid(comharApp.ActiveData);
-                comharApp.InitializeChart(kpi1);
+                kpi1.loadChart();
                 comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
                 $('#add-visit-filter').click(function() {
                   var dataGrid = $('#gridContainer').dxDataGrid('instance');
                   dataGrid.filter(['ElapsedDays', '>', 1]);
                   comharApp.EncounterDataFilter = true;
                   comharApp.ActiveData = comharApp.filterSameDay();
-                  comharApp.InitializeChart(kpi1);
+                  kpi1.loadChart();
                 });
 
                 $('#remove-visit-filter').click(function() {
                   var dataGrid = $('#gridContainer').dxDataGrid('instance');
                   dataGrid.clearFilter();
                   comharApp.ActiveData = comharApp.filterYear();
-                  comharApp.InitializeChart(kpi1);
+                  kpi1.loadChart();
                   comharApp.EncounterDataFilter = false;
                 });
 
                 $('#download-CSV').click(function() {
-                  csvConverter.convert(encounterData);
+                  csvConverter.convert(comharApp.ActiveData);
                 });
 
                 comharApp.highCharts.tcmChart0102($('#chart-TCM-01-02'), summaryData);

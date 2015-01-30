@@ -17,7 +17,7 @@ comharApp.filterSameDay = function() {
 
 
 
-function setKPI (number, dataGridContainer, dayInfo) {
+function Program (number, dataGridContainer, dayInfo) {
   this.KPINUMBER = number;
   this.dataGridContainer = dataGridContainer;
   this.dayInfo = dayInfo || {};
@@ -25,17 +25,9 @@ function setKPI (number, dataGridContainer, dayInfo) {
   return this;
 }
 
-comharApp.InitializeChart = function (kpi) {
-    var threshold = kpi.yellowDays();
-    var numRecords = comharApp.ActiveData.length;
-    var percentCompliant = kpi.calculatePercentCompliant(numRecords, threshold);
 
-    //TODO TEMPORARY
-    comharApp.KPIData[0].CompliancePercent = percentCompliant;
-    comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
-}
 
-setKPI.prototype = {
+Program.prototype = {
 
   init : function init() {
     var elapsedMiliSeconds = this.calculateMiliSeconds();
@@ -123,26 +115,35 @@ setKPI.prototype = {
   setGrid : function(dataSet) {
     var _this = this;
     this.dataGridContainer.dxDataGrid({
-    dataSource: dataSet,
-    columns: [
-      { dataField: 'Clinician' },
-      { dataField: 'PatientId' },
-      { dataField: 'PatientName' },
-      { dataField: 'EncounterStartDate', format: 'shortDate', allowFiltering: true},
-      { dataField: 'EncounterEndDate', format: 'shortDate', allowFiltering: true},
-      { dataField: 'ElapsedDays', cssClass: 'elapsedDays'}
-    ], 
-    columnChooser: { enabled: true },
-    filterRow: { visible: true },
-    pager: { visible: true },
-    paging: { pageSize: 7 },
-    contentReadyAction: function() {
-      _this.colorData();
-    },
-    width: function(){
-      return "100%";
-    }
-  });
+      dataSource: dataSet,
+      columns: [
+        { dataField: 'Clinician' },
+        { dataField: 'PatientId' },
+        { dataField: 'PatientName' },
+        { dataField: 'EncounterStartDate', format: 'shortDate', allowFiltering: true},
+        { dataField: 'EncounterEndDate', format: 'shortDate', allowFiltering: true},
+        { dataField: 'ElapsedDays', cssClass: 'elapsedDays'}
+      ], 
+      columnChooser: { enabled: true },
+      filterRow: { visible: true },
+      pager: { visible: true },
+      paging: { pageSize: 7 },
+      contentReadyAction: function() {
+        _this.colorData();
+      },
+      width: function(){
+        return "100%";
+      }
+    });
+  }, 
+  loadChart : function () {
+    var threshold = this.yellowDays();
+    var numRecords = comharApp.ActiveData.length;
+    var percentCompliant = this.calculatePercentCompliant(numRecords, threshold);
+
+    //TODO TEMPORARY
+    comharApp.KPIData[0].CompliancePercent = percentCompliant;
+    comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
   }
 }
 
