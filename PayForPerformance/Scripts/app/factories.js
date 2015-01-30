@@ -8,10 +8,9 @@ comharFunctions.factory('comharFunctions', function() {
 
       var programIds = _.uniq(data.map(function(item) { return item.P4PInfoId; }));
 
-      var namesandIds = [];
-      for (var _i = 0; _i < programNames.length; _i++) {
-        namesandIds.push({ 'programId' : programIds[_i], 'programName' : programNames[_i] }); 
-      }
+      var namesandIds = Array.zip(programIds, programNames, function(id, name) {
+        return { 'programId' : id, 'programName' : name }
+      });
 
       //TODO
       //TEMPORARY REMOVE FIRST ELEMENT
