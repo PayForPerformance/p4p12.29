@@ -15,18 +15,16 @@ $(function () {
   });
 
    var baseUrl = window.location.protocol + '//' + window.location.hostname + "/";
-   var encounterDetailSourceUrl = "Scripts/encounterDetail2.js";
+   var encounterDetailSourceUrl = "Scripts/encounterDetail.js";
    var summarySourceUrl = "Scripts/summary.js";
 //  var summarySourceUrl = baseUrl + "PayForPerformanceWebApi/api/summary"
 //  var encounterDetailSourceUrl = baseUrl + "PayForPerformanceWebApi/api/encounterDetail"
     try {
         $.getJSON(summarySourceUrl, function (summaryData) {
-          comharApp.summaryData = summaryData;
+
            $('#leftPanel > .ui-panel-inner').css({'padding': '0em'});
            comharApp.KPIData = summaryData;
-           $('#add-visit-filter').dxButton({
-            text: 'Filter Same Day Visists',
-           });
+         
            $('#remove-visit-filter').dxButton({
             text: 'Remove Filter'
            });
@@ -35,7 +33,7 @@ $(function () {
               $.getJSON(encounterDetailSourceUrl, function (encounterData) {
 
                 var fixedDataSet = comharApp.fixDates(encounterData);
-                comharApp.encounterData = fixedDataSet;
+                comharApp.EncounterData = fixedDataSet;
                 comharApp.ActiveData = comharApp.filterYear();
            
                 kpi1 = new Program(0, $('#gridContainer'));
@@ -43,20 +41,29 @@ $(function () {
                     .setGrid(comharApp.ActiveData)
                     .loadChart();
                 comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
-                $('#add-visit-filter').click(function() {
-                  var dataGrid = $('#gridContainer').dxDataGrid('instance');
-                  dataGrid.filter(['ElapsedDays', '>', 1]);
-                  comharApp.EncounterDataFilter = true;
-                  comharApp.ActiveData = comharApp.filterSameDay();
-                  kpi1.loadChart();
+
+                var filterMenuData = ['Filter Same Day Visits', 'Limit to Start of Fiscal Year']
+            
+                $('#dropDownMenu').dxDropDownMenu({
+                  dataSource: filterMenuData,
+                  buttonText: 'Add Filters',
+                  buttonIcon: 'menu'
                 });
 
+                setTimeout(function() {
+                  $('.dx-list-item').click(function() {
+                  t = $(this).text()
+                  comharApp.parseFilter(t, function() {
+                    k = new Program(0, $('#gridContainer'));
+                    k.init().setGrid(comharApp.ActiveData).loadChart();
+                    });
+                  });
+                }, 50);
+         
                 $('#remove-visit-filter').click(function() {
-                  var dataGrid = $('#gridContainer').dxDataGrid('instance');
-                  dataGrid.clearFilter();
+                  k = new Program(0, $('#gridContainer'));
                   comharApp.ActiveData = comharApp.filterYear();
-                  kpi1.loadChart();
-                  comharApp.EncounterDataFilter = false;
+                  k.init().setGrid(comharApp.ActiveData).loadChart();
                 });
 
                 $('#download-CSV').click(function() {

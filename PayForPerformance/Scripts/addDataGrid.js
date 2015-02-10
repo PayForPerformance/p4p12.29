@@ -7,10 +7,20 @@ Array.zip = function(left, right, combinerFunction) {
 
   return results;
 };
-        
 
-
-comharApp.fixDates = function (encounterData) {
+comharApp.parseFilter = function(text, callback) {
+  console.log(text)
+  switch(text) {
+    case 'Filter Same Day Visits':
+      comharApp.ActiveData = comharApp.filterSameDay();
+      break;
+    case 'Limit to Start of Fiscal Year':
+      comharApp.ActiveData = comharApp.filterCalendarYear();
+      break;
+  }
+  callback();
+};        
+comharApp.fixDates = function fixDates(encounterData) {
   var betterDates;
   betterDates = encounterData.map(function (data) {
     data.EncounterStartDate = new Date(data.EncounterStartDate);
@@ -19,15 +29,21 @@ comharApp.fixDates = function (encounterData) {
   });
   return betterDates;
 };
-comharApp.filterYear = function() {
-  return _.filter(comharApp.encounterData, function(item) { return item.EncounterStartDate >= new Date(comharApp.EncounterYear.FiscalYearStartDate) && item.EncounterEndDate < new Date(comharApp.EncounterYear.FiscalYearEndDate) }); 
+
+comharApp.filterYear = function filterYear() {
+  return _.filter(comharApp.EncounterData, function(item) { return item.EncounterEndDate.getYear() === new Date(comharApp.EncounterYear.FiscalYearEndDate).getYear() }); 
 };
 
-comharApp.filterSameDay = function() {
+comharApp.filterCalendarYear = function() {
+  var currentYear = new Date(comharApp.EncounterYear.FiscalYearEndDate).getYear();
+  return _.filter(comharApp.EncounterData, function(item) { 
+    return item.EncounterEndDate.getYear() === currentYear && item.EncounterStartDate.getYear() === currentYear
+  });
+};
+
+comharApp.filterSameDay = function filterSameDay() {
   return _.filter(comharApp.ActiveData, function(item) { return item.ElapsedDays > 0 });
 };
-
-
 
 function Program (number, dataGridContainer, dayInfo) {
   this.KPINUMBER = number;
