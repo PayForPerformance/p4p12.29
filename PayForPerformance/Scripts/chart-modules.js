@@ -1,98 +1,63 @@
 ﻿comharApp.highCharts = {
-  tcmChart0102: function (container, summaryData) {
+  tcmChart0102: function (container, complianceData) {
+    var years = Object.keys(complianceData)
+    console.log(years)
     container.highcharts({
-      chart: {
-        type: 'gauge',
-        plotBackgroundColor: null,
-        plotBackgroundImage: null,
-        plotBorderWidth: 0,
-        plotShadow: false
-      },
-
-    title: {
-      text: 'Blended Enhanced and ACT'
-    },
-
-    pane: {
-      startAngle: -150,
-      endAngle: 150,
-      background: [{
-        backgroundColor: {
-          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-          stops: [
-          [0, '#FFF'],
-          [1, '#333']
-          ]
+        chart: {
+            type: 'bar'
         },
-        borderWidth: 0,
-        outerRadius: '109%'
+        title: {
+            text: 'Comparison between Years'
         },
-        {
-          backgroundColor: {
-          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-          stops: [
-          [0, '#333'],
-          [1, '#FFF']
-          ]
+        subtitle: {
+            text: 'Variation between years in compliance.'
         },
-        borderWidth: 1,
-        outerRadius: '107%'
-      }, 
-      {
-      // default background
-      }, 
-        {
-          backgroundColor: '#DDD',
-          borderWidth: 0,
-          outerRadius: '105%',
-          innerRadius: '103%'
-      }]
-      },
-
-    // the value axis
-    yAxis: {
-      min: 0,
-      max: 100,
-
-      minorTickInterval: 'auto',
-      minorTickWidth: 1,
-      minorTickLength: 10,
-      minorTickPosition: 'inside',
-      minorTickColor: '#666',
-
-      tickPixelInterval: 30,
-      tickWidth: 2,
-      tickPosition: 'inside',
-      tickLength: 10,
-      tickColor: '#666',
-      labels: {
-        step: 2,
-        rotation: 'auto'
-      },
-      title: {
-        text: summaryData[0].KpiId
-      },
-      plotBands: [{
-        from: summaryData[0].GreenFrom,
-        to: summaryData[0].GreenTo,
-            color: '#55BF3B' // green
-          }, {
-            from: summaryData[0].YellowFrom,
-            to: summaryData[0].YellowTo,
-            color: '#DDDF0D' // yellow
-          }, {
-            from: summaryData[0].RedFrom,
-            to: summaryData[0].RedTo,
-            color: '#DF5353' // red
-          }]
+        xAxis: {
+            categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            title: {
+                text: null
+            }
         },
-
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Percentage of visits with at least a 31 day gap.',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' percent'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -05,
+            y: 60,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
         series: [{
-          name: 'Compliance: ',
-          data: [summaryData[0].CompliancePercent],
-          tooltip: {
-            valueSuffix: '%'
-          }
+            name: years[0],
+            data: complianceData[years[0]]
+        }, {
+            name: years[1],
+            data: complianceData[years[1]]
         }]
     });
 },
