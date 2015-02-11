@@ -19,7 +19,6 @@ comharControllers.controller('programCtrl', ['$scope', '$http', function ($scope
 
     $http.get('Scripts/program.js').success(function(programs) {
       $scope.programs = angular.fromJson(programs);
-
     });
 
 }]);
@@ -43,7 +42,5 @@ comharControllers.controller('dateCtrl', ['$rootScope', '$scope', '$http',
                .loadChart();
 
       };
-     
-
   });
 }]);

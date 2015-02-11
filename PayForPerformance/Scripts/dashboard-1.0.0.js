@@ -26,7 +26,7 @@ $(function () {
            comharApp.KPIData = summaryData;
          
            $('#remove-visit-filter').dxButton({
-            text: 'Remove Filter'
+            text: 'Remove Filters'
            });
 
             $('#tcm-01-01').on('click', function () {
