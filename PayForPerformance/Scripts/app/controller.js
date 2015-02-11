@@ -40,6 +40,8 @@ comharControllers.controller('dateCtrl', ['$rootScope', '$scope', '$http',
         program.init()
                .setGrid(comharApp.ActiveData)
                .loadChart();
+        var complianceData = comharApp.getMonthlyCompliance();
+        comharApp.highCharts.tcmChart0102($('#chart-TCM-01-02'), complianceData);
 
       };
   });

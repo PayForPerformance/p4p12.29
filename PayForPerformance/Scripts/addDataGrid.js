@@ -1,3 +1,40 @@
+comharApp.getMonthlyCompliance = function() {
+  
+  var currentYear = new Date(comharApp.EncounterYear.FiscalYearEndDate).getYear();
+
+  function parseData(year) {
+    var totalVisitsPerMonth = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0);
+    var currentYearCompliance = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0);
+
+    comharApp.EncounterData.forEach(function(item) {
+      if (item.EncounterEndDate.getYear() === year ) {
+        totalVisitsPerMonth[item.EncounterEndDate.getMonth()] += 1;
+      }
+      if ( item.ElapsedDays >= 31 && item.EncounterEndDate.getYear() === year ) {
+        currentYearCompliance[item.EncounterEndDate.getMonth()] += 1;
+      }
+
+    });
+    console.log(totalVisitsPerMonth)
+    console.log(currentYearCompliance)
+    percentOutOfCompliance = totalVisitsPerMonth.map(function(item, i) {
+      if ( item !== 0 ) {
+        return parseFloat((currentYearCompliance[i] / item * 100).toFixed(2));
+      } else {
+        return 0;
+      }
+    });
+    return percentOutOfCompliance
+  }
+
+  var current = 1900 + currentYear;
+  var prev = 1900 + (currentYear - 1);
+  var yearInfo = {};
+  yearInfo[current] = parseData(currentYear);
+  yearInfo[prev] = parseData(currentYear - 1);
+  return yearInfo;  
+}
+
 Array.zip = function(left, right, combinerFunction) {
   var counter, results = [];
 
@@ -36,7 +73,7 @@ comharApp.filterYear = function filterYear() {
 
 comharApp.filterCalendarYear = function() {
   var currentYear = new Date(comharApp.EncounterYear.FiscalYearEndDate).getYear();
-  return _.filter(comharApp.EncounterData, function(item) { 
+  return _.filter(comharApp.ActiveData, function(item) { 
     return item.EncounterEndDate.getYear() === currentYear && item.EncounterStartDate.getYear() === currentYear
   });
 };
