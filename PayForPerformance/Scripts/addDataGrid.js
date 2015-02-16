@@ -51,8 +51,8 @@ comharApp.parseFilter = function(text, callback) {
     case 'Filter Same Day Visits':
       comharApp.ActiveData = comharApp.filterSameDay();
       break;
-    case 'Limit to Start of Fiscal Year':
-      comharApp.ActiveData = comharApp.filterCalendarYear();
+    case 'Show All Visits Ending in Fiscal Year':
+      comharApp.ActiveData = comharApp.filterEndYear();
       break;
   }
   callback();
@@ -67,19 +67,22 @@ comharApp.fixDates = function fixDates(encounterData) {
   return betterDates;
 };
 
-comharApp.filterYear = function filterYear() {
+comharApp.filterEndYear = function filterYear() {
   return _.filter(comharApp.EncounterData, function(item) { return item.EncounterEndDate.getYear() === new Date(comharApp.EncounterYear.FiscalYearEndDate).getYear() }); 
 };
 
 comharApp.filterCalendarYear = function() {
   var currentYear = new Date(comharApp.EncounterYear.FiscalYearEndDate).getYear();
-  return _.filter(comharApp.ActiveData, function(item) { 
+  return _.filter(comharApp.EncounterData, function(item) { 
     return item.EncounterEndDate.getYear() === currentYear && item.EncounterStartDate.getYear() === currentYear
   });
 };
 
 comharApp.filterSameDay = function filterSameDay() {
-  return _.filter(comharApp.ActiveData, function(item) { return item.ElapsedDays > 0 });
+  var currentYear = new Date(comharApp.EncounterYear.FiscalYearEndDate).getYear();
+  return _.filter(comharApp.ActiveData, function(item) { 
+    return item.ElapsedDays > 0 
+  });
 };
 
 function Program (number, dataGridContainer, dayInfo) {
