@@ -35,7 +35,7 @@ comharControllers.controller('dateCtrl', ['$rootScope', '$scope', '$http',
       $scope.setSelected = function(index) {
         $rootScope.selected = $scope.years[index];
         comharApp.EncounterYear = $rootScope.selected;
-        comharApp.ActiveData = comharApp.filterYear();
+        comharApp.ActiveData = comharApp.filterCalendarYear();
         program = new Program(0, $('#gridContainer'));
         program.init()
                .setGrid(comharApp.ActiveData)
