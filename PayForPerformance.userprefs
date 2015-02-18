@@ -1,13 +1,19 @@
 ﻿<Properties StartupItem="PayForPerformance/PayForPerformance.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PayForPerformance/Scripts/dashboard-1.0.0.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../Library/Frameworks/Mono.framework/Versions/3.12.0/lib/mono/4.5/Microsoft.Common.targets">
     <Files>
-      <File FileName="PayForPerformance/index.html" Line="7" Column="7" />
-      <File FileName="PayForPerformance/Scripts/dashboard-1.0.0.js" Line="11" Column="11" />
-      <File FileName="PayForPerformance/Scripts/addDataGrid.js" Line="2" Column="2" />
-      <File FileName="PayForPerformance/Scripts/app/controller.js" Line="3" Column="3" />
-      <File FileName="PayForPerformance/Scripts/comhar-namespacing.js" Line="30" Column="30" />
-      <File FileName="PayForPerformance/Scripts/data-modules.js" Line="3" Column="3" />
+      <File FileName="PayForPerformance/index.html" Line="2" Column="2" />
+      <File FileName="PayForPerformance/Scripts/dashboard-1.0.0.js" Line="112" Column="112" />
+      <File FileName="PayForPerformance/Scripts/addDataGrid.js" Line="9" Column="9" />
+      <File FileName="PayForPerformance/Scripts/app/controller.js" Line="13" Column="13" />
+      <File FileName="PayForPerformance/Scripts/comhar-namespacing.js" Line="1" Column="1" />
+      <File FileName="PayForPerformance/Scripts/data-modules.js" Line="33" Column="33" />
+      <File FileName="PayForPerformance/Scripts/app/app.js" Line="1" Column="1" />
+      <File FileName="PayForPerformance/Scripts/main.js" Line="30" Column="30" />
+      <File FileName="PayForPerformance/Scripts/app/factories.js" Line="24" Column="24" />
+      <File FileName="PayForPerformance/default.aspx" Line="1" Column="1" />
+      <File FileName="PayForPerformance/Scripts/jquery-1.9.1.min.js" Line="28408" Column="28408" />
+      <File FileName="../../../../Library/Frameworks/Mono.framework/Versions/3.12.0/lib/mono/4.5/Microsoft.Common.targets" Line="2" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

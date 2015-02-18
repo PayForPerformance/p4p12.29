@@ -1,6 +1,6 @@
-﻿define('app', function() {
-  var ComharNGApp = angular.module('ComharNGApp', ['ngSanitize','comharFunctions','comharControllers']);
+﻿define(['dxAll', 'angular', 'angularSanitize','./controller', './factories'], function(DevExpress, angular, angularSanitize, controller, factories) {
 
+  var ComharNGApp = angular.module('ComharNGApp', ['dx','ngSanitize','comharFunctions','comharControllers']);
 
   ComharNGApp.directive('popoverClose', function() {
     return {
@@ -59,9 +59,8 @@
       } 
     }
   });
-
-  angular.element(document).ready(function() {
-    angular.bootstrap(document, ['ComharNGApp']);
-  });
- 
+  console.log(ComharNGApp)
+  return ComharNGApp
 });
+
+

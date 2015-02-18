@@ -1,5 +1,9 @@
-﻿require(['addDataGrid', 'data-utilities', 'dxAll'], function(Program) {
-  var comharControllers = angular.module('comharControllers', []);
+﻿require(['angular', 'addDataGrid', 'data-modules', 'comhar-namespacing'], function(angular, Program, dataUtilities, comharNamespacing) {
+  console.log(angular)
+
+  console.log('leeel')
+  console.log(comharNamespacing)
+  var comharControllers = angular.module('comharControllers', ['dateLookup']);
 
   comharControllers.controller('comharCtrl', ['$scope', '$http', 'comharFunctions',
     function ($scope, $http, comharFunctions) {
@@ -27,9 +31,10 @@
   }]);
 
 
-  comharControllers.controller('programCtrl', ['$scope', '$http', function ($scope, $http) {
+  comharControllers.controller('programCtrl', ['dateLookup','$scope', '$http', function (dateLookup, $scope, $http) {
       $http.get('Scripts/encounterDetail.js').success(function(encounterData) {
         $http.get('Scripts/program.js').success(function(programs) {
+
           $scope.programs = angular.fromJson(programs);
           var fixedDataSet = comharApp.DataModules.fixDates(encounterData);
           comharApp.EncounterData = fixedDataSet;
@@ -37,46 +42,63 @@
           comharApp.ActiveData = comharApp.DataModules.filterYear();
 
           p = new Program(0, angular.element('#gridContainer')).init().setGrid(comharApp.ActiveData).loadChart();
-       
-          
-
           comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
           var complianceData = comharApp.DataModules.getMonthlyCompliance();
           comharApp.highCharts.tcmChart0102($('#chart-TCM-01-02'), complianceData);
+
+
+
+          $scope.$on('Year Changed', function() {
+            comharApp.ActiveData = comharApp.DataModules.filterYear();
+            program = new Program(0, $('#gridContainer'));
+            program.init()
+              .setGrid(comharApp.ActiveData)
+              .loadChart();
+            
+            var complianceData = comharApp.DataModules.getMonthlyCompliance();
+            comharApp.highCharts.tcmChart0102(angular.element('#chart-TCM-01-02'), complianceData);
           });
+          });
+
         });
 
   }]);
 
 
-  comharControllers.controller('dateCtrl', ['$rootScope', '$scope', '$http',
-    function ($rootScope, $scope, $http) {
-
-    $http.get('Scripts/DateLookup.js').success(function(data) {
-      
-      $scope.years = angular.fromJson(data);
-      $scope.selected = $scope.years[2];
-
-      $scope.$watch('selected', function(oldVal, newVal) {
-        if (oldVal !== newVal) {
-          $scope.selected = newVal;
-        }
-      });
-      $scope.setSelected = function(index) {
-        $scope.selected = $scope.years[index];
-
-//        comharApp.EncounterYear = _this.selected;
-//        comharApp.ActiveData = comharApp.DataModules.filterYear();
-//        program = new Program(0, $('#gridContainer'));
-//        program.init()
-//               .setGrid(comharApp.ActiveData)
-//               .loadChart();
-//        var complianceData = comharApp.DataModules.getMonthlyCompliance();
-//        comharApp.highCharts.tcmChart0102($('#chart-TCM-01-02'), complianceData);
-
-      };
-    });
+  comharControllers.controller('dateCtrl', ['dateLookup', '$scope',
+    function (dateLookup, $scope, $http) {
+      dateLookup.getYears().success(function() {
+        $scope.years = dateLookup.years;
+        $scope.selected = $scope.years[2];
+      }); 
+      $scope.$on('Year Changed', function() {
+        $scope.selected = dateLookup.selectedYear;
+        comharApp.EncounterYear = $scope.selected;
+      }); 
   }]);
+
+  comharControllers.controller('dateList', ['dateLookup', '$scope', 
+    function(dateLookup, $scope, $http) {
+       dateLookup.getYears().success(function() {
+        $scope.years = dateLookup.years;
+      });
+    $scope.setSelected = dateLookup.setSelected;
+  }]);
+
+  comharControllers.controller('gridCtrl', ['$scope', function($scope) {
+    $scope.filterMenuData = ['Filter Same Day Visits', 'Limit to Start of Fiscal Year'];
+    $scope.heya = function heya(event) { 
+      console.log(event)
+      var text = event.itemData;
+      console.log(text)
+      comharApp.DataUtilities.parseFilter(text, function() {
+        k = new Program(0, $('#gridContainer'));
+        k.init().setGrid(comharApp.ActiveData).loadChart();
+      });
+    }
+  }]);
+
+  return comharControllers;
 
 });
 

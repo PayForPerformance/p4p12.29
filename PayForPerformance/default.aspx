@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="PayForPerformance._default" %>
+
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,21 +13,18 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/dx-common.css" />
   <link rel="stylesheet" type="text/css" href="stylesheets/dx-light.css" />
 
+
   <script src="Scripts/require.js"></script>
   <script src="Scripts/main.js"></script>
+
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Pay For Performance</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
   <link rel="stylesheet" href="stylesheets/comhar-2.0.6.min.css" />
-  <style>
-    .no-js {
-      background: #4f8700;
-      display: none;
-    }
-  </style>
+
 </head>
-<body ng-cloak class="no-js">
+<body ng-app="ComharNGApp">
 
 
   <form id="form1">
@@ -35,7 +34,7 @@
       <div data-role="panel" id="leftPanel" data-position="left" data-display="push">
         <div ng-controller="programCtrl">
   
-          <ul data-role="listview" ng-repeat="program in programs">
+          <ul data-role="listview" ng-repeat="program in programs" jquery-create>
             <li><a ng-href="#{{ program.ProgramName }}">{{ program.ProgramName }}</a></li>
           </ul>
         </div>
@@ -61,24 +60,26 @@
 
 
       <div role="main" class="ui-content" data-theme="c">
-        <h1>ETCM</h1>
-        <div ng-controller="dateCtrl">
-          <label class="fiscalYearLabel" style="margin-left:6px;display:inline;font-size:1.2em">{{ selected.FiscalYearStartDate | date : longDate }} - {{ selected.FiscalYearEndDate | date : longDate }}</label>
-          <a href="#fiscalYearPopup" data-rel="popup" style="width:200px;margin-left:6px;text-align:left;display:inline;color:white;vertical-align:middle;font-size:.8em">select another fiscal year</a>
-          <div data-role="popup" id="fiscalYearPopup" data-position-to="open">
-            {{ selected.DataRangeName }}
-            <div style="padding:12px;">
-            <div ng-controller="dateList" popover-close>
-     
-                
-                <div data-theme="a" style="font-weight:bold;font-size:.8em;margin-bottom:6px;" jquery-create>Select Another Fiscal Year:</div>
-                  <ul data-role="listview" class="fiscal-date-listview" ng-repeat="year in years" jquery-create>
-                    <li ng-click="setSelected($index)" jquery-create><a ng-href="#" class="fiscalYearListItem">{{ year.FiscalYearStartDate | date : longDate }} - {{ year.FiscalYearEndDate | date : longDate }}</a></li>
-                  </ul>
-                </div>
-              </div>
-         
+        <h1 style="display:inline">ETCM</h1>
+        <div ng-controller="dateCtrl" style="display:inline">
+          <label class="fiscalYearLabel" style="margin-left:6px;display:inline;font-size:1.4em">{{ selected.FiscalYearStartDate | date : longDate }} - {{ selected.FiscalYearEndDate | date : longDate }}</label>
+        </div>
+        <a href="#fiscalYearPopup" data-rel="popup" style="float:right;width:200px;margin-left:6px;margin-top:12px;text-align:right;display:inline;color:#ccccff;vertical-align:baseline;font-size:1em">select another year:</a>
+
+        <div style="clear:both" data-role="popup" id="fiscalYearPopup" data-position-to="open">
+          <div style="padding:12px;">
+            <div ng-controller="dateCtrl" popover-close jquery-two>
+              <div style="font-weight:bold;font-size:1.4em;color:rgba(0, 85, 164, 1)">{{ selected.DataRangeName }}<span style="font-weight:normal;font-size:.6em;margin-left:4px;">is the currently selected year</span></div>
+              <div data-theme="a" style="font-weight:bold;font-size:.9em;margin-top:12px;margin-bottom:6px;color:rgba(0, 85, 164, 1)">Select another year:</div>
+           
+              <ul data-role="listview" class="fiscal-date-listview" ng-repeat="year in years" jquery-create>
+                <li ng-click="setSelected($index)"><a ng-href="#" class="fiscalYearListItem" >{{ year.FiscalYearStartDate | date : longDate }} - {{ year.FiscalYearEndDate | date : longDate }}</a></li>
+              </ul>
+            </div>
+
+
           </div>
+        </div>
         <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="false" data-theme="b" data-content-theme="c">
           <h3 id="tcm-01-01" class="kpiContainer">TCM 01:Service Delivery and Continuity of Care</h3>
           <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="false">
@@ -105,14 +106,9 @@
             <div data-role="collapsible">
               <h3>Encounter Details</h3>
               <div id="gridContainer" class="gridContainer" style="width:100%; height:auto;"></div>
-              <div style="height:60px; width:100%" ng-controller="gridCtrl">
+              <div style="height:60px; width:100%">
                 <ul class="filter-buttons">
-                  <li><div style="max-width:200px" dx-drop-down-menu="{
-                        dataSource: filterMenuData,
-                        buttonText: 'Show Filters',
-                        buttonIcon: 'menu',
-                        itemClickAction: heya
-                        }"></div></li>
+                  <li><div id="dropDownMenu" style="max-width:200px"></div></li>
                   <li><div id="remove-visit-filter" style="max-width:200px"></div></li>
                 </ul>
               </div>
@@ -130,8 +126,6 @@
               <div class="ui-block-a">
                 <div class="ui-bar ui-bar-a" style="background-color:white;">
                     <div id="chart-TCM-01-02" class="kpiChart"></div>
-                    <input type="range" name="slider1" id="slider1" min="0" max="40" step="20">
-
                 </div>
               </div>
               <div class="ui-block-b">
@@ -251,3 +245,4 @@
 
   </body>
   </html>
+

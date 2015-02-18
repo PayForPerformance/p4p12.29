@@ -1,4 +1,5 @@
-define("addDataGrid", ['./comhar-namespacing', 'dxAll'], function() {
+define(['comhar-namespacing', 'dxAll'], function(comharNamespacing, DevExpress) {
+
   function Program (number, dataGridContainer, dayInfo) {
     this.KPINUMBER = number;
     this.dataGridContainer = dataGridContainer;
