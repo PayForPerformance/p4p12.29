@@ -15,6 +15,10 @@
         deps: ['jquery', 'jquery.mobile-1.4.2.min'],
         exports: 'angular'
       },
+      Globalize: {
+        deps: ['jquery'],
+        exports: "Globalize"
+      },
       highcharts: {
         deps: ['jquery'],
         exports: "Highcharts"
@@ -31,6 +35,9 @@
         deps: ['Highcharts', 'highcharts-more'],
         exports: 'chart-modules'
       },
+      "comhar-namespacing": {
+        exports: 'comharApp'
+      }, 
       dataUtilities: {
         deps: ['comhar-namespacing'],
         exports: 'data-utilities'
@@ -38,16 +45,17 @@
       
     },
     paths: {
-     
-        "jquery": "jquery-1.9.1.min",
+        "jquery": "jquery-1.11.2.min",
         "Globalize": "globalize.min",
-        "_": "underscore.min",
+        "underscore": "underscore.min",
         "angular": "angular-1.3.5.min",
         "angularSanitize": "./angular-sanitize.min",
-        "dxAll": "dxAll",
+        "dxAll": "dxWebApps",
         "app": "./app/app",
         "controller": "./app/controller",
-        "factories": "./app/factories"
+        "factories": "./app/factories",
+        "dashboard": "dashboard-1.0.0",
+
 
     },
 
@@ -55,19 +63,24 @@
 
 require(["jquery", 
     "jquery.mobile-1.4.2.min",
+    "Globalize",
     "comhar-namespacing",
-    "data-utilities", 
+    "underscore",
+    "data-utilities",
+    "chart-modules", 
     "dxAll",
+    "json2csv",
+    "dashboard",
+    "highcharts-more",
     "angular",
     "angularSanitize", 
     "controller",
     "factories",
-    "app"], function(jquery, jqueryMobile, comharNamespacing, dataUtilities, DevExpress, angular, angularSanitize, controller, factories, ComharNGApp) {
-      var app = require('app')
-      console.log(app)
+    "app"], function(jquery, jqueryMobile, Globalize, comharApp, _, dataUtilities, chartModules, DevExpress, csvConverter, dashboard, highchartsMore, angular, angularSanitize, controller, factories, ComharNGApp) {
+
 
       angular.element(document).ready(function() {
-        console.log('yolo')
+
         document.body.className = document.body.className.replace("no-js","");
         document.body.className = document.body.className.replace("dx-theme-generic dx-theme-generic-typography dx-color-scheme-light","");
         angular.bootstrap(document, ['ComharNGApp']);

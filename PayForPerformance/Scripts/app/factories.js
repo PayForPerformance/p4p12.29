@@ -1,5 +1,4 @@
-﻿require(['angular', '_'], function(angular, DevExpress) {
-  console.log('shit')
+﻿define(['angular', 'underscore'], function(angular, _) {
   var comharFunctions = angular.module('comharFunctions', []);
 
     comharFunctions.factory('comharFunctions', function() {
@@ -41,4 +40,6 @@
     
     return rObj;
   });
+
+  
 });

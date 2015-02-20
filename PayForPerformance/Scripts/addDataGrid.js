@@ -1,5 +1,5 @@
-define(['comhar-namespacing', 'dxAll'], function(comharNamespacing, DevExpress) {
-
+define(['comhar-namespacing', 'dxAll'], function(comharApp, DevExpress) {
+  
   function Program (number, dataGridContainer, dayInfo) {
     this.KPINUMBER = number;
     this.dataGridContainer = dataGridContainer;
@@ -107,6 +107,11 @@ define(['comhar-namespacing', 'dxAll'], function(comharNamespacing, DevExpress) 
         paging: { pageSize: 7 },
         contentReadyAction: function() {
           _this.colorData();
+          //Add Column Chooser Label
+          var colLabel ='<p style="float:right; padding-left:22px;">Column Chooser:</p>';
+          $colheader = $('.dx-datagrid-header-panel');
+          if ( $colheader.children().length == 1 )
+            $colheader.append(colLabel);
         },
         width: function(){
           return "100%";
@@ -121,7 +126,7 @@ define(['comhar-namespacing', 'dxAll'], function(comharNamespacing, DevExpress) 
 
       //TODO TEMPORARY
       comharApp.KPIData[0].CompliancePercent = percentCompliant;
-      comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
+      comharApp.charts.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
       return this;
     }
   }

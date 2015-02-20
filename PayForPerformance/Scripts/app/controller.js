@@ -1,8 +1,5 @@
-﻿require(['angular', 'addDataGrid', 'data-modules', 'comhar-namespacing'], function(angular, Program, dataUtilities, comharNamespacing) {
-  console.log(angular)
+﻿define(['angular', 'addDataGrid', 'data-modules', 'comhar-namespacing','chart-modules'], function(angular, Program, dataUtilities, comharApp) {
 
-  console.log('leeel')
-  console.log(comharNamespacing)
   var comharControllers = angular.module('comharControllers', ['dateLookup']);
 
   comharControllers.controller('comharCtrl', ['$scope', '$http', 'comharFunctions',
@@ -24,7 +21,7 @@
         var $element = $(element);
         //TEMPORARY BUGFIX
         if ( id !== 1 ) { 
-          window.comharApp.highCharts[functionName]($element, comharApp.KPIData);
+          comharApp.highCharts[functionName]($element, comharApp.KPIData);
         }
       }
     });
@@ -42,9 +39,9 @@
           comharApp.ActiveData = comharApp.DataModules.filterYear();
 
           p = new Program(0, angular.element('#gridContainer')).init().setGrid(comharApp.ActiveData).loadChart();
-          comharApp.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
+          comharApp.charts.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
           var complianceData = comharApp.DataModules.getMonthlyCompliance();
-          comharApp.highCharts.tcmChart0102($('#chart-TCM-01-02'), complianceData);
+          comharApp.charts.highCharts.tcmChart0102($('#chart-TCM-01-02'), complianceData);
 
 
 
@@ -56,7 +53,7 @@
               .loadChart();
             
             var complianceData = comharApp.DataModules.getMonthlyCompliance();
-            comharApp.highCharts.tcmChart0102(angular.element('#chart-TCM-01-02'), complianceData);
+            comharApp.charts.highCharts.tcmChart0102(angular.element('#chart-TCM-01-02'), complianceData);
           });
           });
 
@@ -101,4 +98,3 @@
   return comharControllers;
 
 });
-

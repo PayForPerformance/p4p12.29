@@ -1,4 +1,4 @@
-﻿require(['comhar-namespacing'], function() {
+﻿define(['comhar-namespacing'], function(comharApp) {
   Array.zip = function(left, right, combinerFunction) {
     var counter, results = [];
 

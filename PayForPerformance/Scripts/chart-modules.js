@@ -1,5 +1,5 @@
-﻿require(["comhar-namespacing"], function(comharNamespacing) {
-  comharApp.highCharts = {
+﻿define(["comhar-namespacing", "highcharts"], function(comharApp, Highcharts) {
+  comharApp.charts.highCharts = {
     tcmChart0102: function (container, complianceData) {
       var years = Object.keys(complianceData)
 
@@ -36,7 +36,8 @@
               bar: {
                   dataLabels: {
                       enabled: true
-                  }
+                  },
+
               }
           },
           legend: {
@@ -55,10 +56,12 @@
           },
           series: [{
               name: years[0],
-              data: complianceData[years[0]]
+              data: complianceData[years[0]], 
+              color: '#C4D3F3' 
           }, {
               name: years[1],
-              data: complianceData[years[1]]
+              data: complianceData[years[1]],
+              color: '#4f8700'
           }]
       });
   },
@@ -357,8 +360,8 @@
 
     }
   }
-
-  comharApp.dxChart = {
+  //DevExpress Chart for TCM01
+  comharApp.charts.dxChart = {
     tcmChart01 : function (container, summaryData) {
       container.dxCircularGauge({
         scale: {
@@ -402,5 +405,6 @@
       });
     }
   }
+  return comharApp.charts;
 });
 
