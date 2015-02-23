@@ -11,33 +11,15 @@
       }
     }
   });
-  ComharNGApp.directive('collapseOpen', function() {
-    return {
-      link: function($scope, $element, $attrs) {
-        console.log($attrs)
-      }
-    }
-  });
-
+ 
   ComharNGApp.directive('jqueryCreate', function() {
    return {
      link: function($scope, $element, $attr) {
-        console.log('jquery create')
         $element.parent().trigger('create');
       }
     };
   });
-  ComharNGApp.directive('jqueryTrigger', function() {
-   return {
-     link: function($scope, $element, $attr) {
-          
-            console.log('EnhanceWithin')
-            $element.enhanceWithin();
-          
-
-      }
-    };
-  });
+  
   ComharNGApp.directive('firstKpi', function($compile) {
     return {
       link: function($scope, $element, $attr) {
@@ -137,6 +119,12 @@
         $element.append(content);
       } 
     }
+  });
+
+    ComharNGApp.config(function ($sceProvider) {
+      // Completely disable SCE.  For demonstration purposes only!
+      // Do not use in new projects.
+      $sceProvider.enabled(false);
   });
 
   return ComharNGApp

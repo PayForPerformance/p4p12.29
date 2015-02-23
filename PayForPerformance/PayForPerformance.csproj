@@ -11,7 +11,7 @@
     <RootNamespace>PayForPerformance</RootNamespace>
     <AssemblyName>PayForPerformance</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -481,7 +481,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54354</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/P4PLiveGrid</IISUrl>
+          <IISUrl>http://localhost:54354/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

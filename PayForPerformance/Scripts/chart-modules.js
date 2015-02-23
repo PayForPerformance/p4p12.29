@@ -36,7 +36,7 @@
               bar: {
                   dataLabels: {
                       enabled: true
-                  },
+                  }
 
               }
           },
@@ -389,7 +389,7 @@
           height: 464
         },
         valueIndicator: {
-          offset: 20,
+          offset: 20
         },
         subvalueIndicator: {
           offset: -25
@@ -401,7 +401,7 @@
         subtitle: {
           text: 'Percent Compliant'
         },
-        value: summaryData[0].CompliancePercent,
+        value: summaryData[0].CompliancePercent
       });
     }
   }

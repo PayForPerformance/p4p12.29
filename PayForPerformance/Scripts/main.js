@@ -9,7 +9,7 @@
         exports: '_'
       },
       "jquery.mobile-1.4.2.min": {
-        deps: ['jquery'],
+        deps: ['jquery']
       },
       angular: {
         deps: ['jquery', 'jquery.mobile-1.4.2.min'],
@@ -54,10 +54,8 @@
         "app": "./app/app",
         "controller": "./app/controller",
         "factories": "./app/factories",
-        "dashboard": "dashboard-1.0.0",
-
-
-    },
+        "dashboard": "dashboard-1.0.0"
+    }
 
 });
 
@@ -77,10 +75,8 @@ require(["jquery",
     "controller",
     "factories",
     "app"], function(jquery, jqueryMobile, Globalize, comharApp, _, dataUtilities, chartModules, DevExpress, csvConverter, dashboard, highchartsMore, angular, angularSanitize, controller, factories, ComharNGApp) {
-    console.log(jqueryMobile)
 
-
-      angular.element(document).ready(function() {
+      angular.element(document).ready(function () {
 
         angular.element('#form1').removeClass("no-js");
         document.body.className = document.body.className.replace("dx-theme-generic dx-theme-generic-typography dx-color-scheme-light","");

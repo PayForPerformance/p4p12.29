@@ -10,3 +10,9 @@ C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup
 C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup\PayForPerformance\obj\Debug\PayForPerformance.csprojResolveAssemblyReference.cache
 C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup\PayForPerformance\obj\Debug\PayForPerformance.dll
 C:\Users\David Karasek\Downloads\p4p-12.27-expand-markup\p4p-12.27-expand-markup\PayForPerformance\obj\Debug\PayForPerformance.pdb
+C:\Users\Brendan Preview\dev\p4p12.29\PayForPerformance\bin\PayForPerformance.dll.config
+C:\Users\Brendan Preview\dev\p4p12.29\PayForPerformance\bin\PayForPerformance.dll
+C:\Users\Brendan Preview\dev\p4p12.29\PayForPerformance\bin\PayForPerformance.pdb
+C:\Users\Brendan Preview\dev\p4p12.29\PayForPerformance\obj\Debug\PayForPerformance.csprojResolveAssemblyReference.cache
+C:\Users\Brendan Preview\dev\p4p12.29\PayForPerformance\obj\Debug\PayForPerformance.dll
+C:\Users\Brendan Preview\dev\p4p12.29\PayForPerformance\obj\Debug\PayForPerformance.pdb
