@@ -18,14 +18,13 @@
     <link rel="stylesheet" href="stylesheets/comhar-2.0.6.min.css" />
     <style>
         .no-js {
-            background: #4f8700;
             visibility: hidden;
         }
     </style>
 </head>
-<body ng-cloak class="no-js">
+<body ng-cloak>
 
-    <form id="form1">
+    <form id="form1" class="no-js">
 
         <div data-role="page" id="ETCM" data-theme="c" data-dom-cache="false">
             <div data-role="panel" id="leftPanel" data-position="left" data-display="push">
@@ -71,97 +70,20 @@
                           </div>
                       
                     </div>
-                    <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="false" data-theme="b" data-content-theme="c">
-                        <h3 id="tcm-01-01" class="kpiContainer">TCM 01:Service Delivery and Continuity of Care</h3>
-                        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="false">
-                            <h3>Percent of authorizations having at least one 31 day gap between services</h3>
-                            <div class="ui-grid-a ui-responsive">
-                                <div class="ui-block-a">
-                                    <div class="ui-bar ui-bar-a" style="background-color:white;">
-                                        <div id="chart2-TCM-01-01" class="kpiChart"></div><!--Chart Here -->
-                                    </div>
+
+                    <div ng-controller="comharCtrl" jquery-create>
+                        <div first-kpi></div>
+                     </div>
+
+                        <div ng-controller="comharCtrl">
+                     
+                                <div ng-repeat="kpi in namesandIds" jquery-create>
+                                    <div test-kpi></div>
                                 </div>
-
-                                <div class="ui-block-b">
-                                    <div class="ui-bar ui-bar-c">
-                                        <div ng-controller="comharCtrl">
-                                            <div data-role="collapsible" ng-repeat ="item in data | limitTo : 8" jquery-create>
-                                                <h1>{{ item.Heading }}</h1>
-                                                <p>{{ item.Text }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div data-role="collapsible">
-                                <h3>Encounter Details</h3>
-                                <div id="gridContainer" class="gridContainer" style="width:100%; height:auto;"></div> <!--DataGrid -->
-                                <div style="height:60px; width:100%" ng-controller="gridCtrl">
-                                    
-                                    <ul class="filter-buttons">
-                                        <li>
-                                            <div style="max-width:200px" dx-drop-down-menu="{
-                                                dataSource: filterMenuData,
-                                                buttonText: 'Show Filters',
-                                                buttonIcon: 'menu',
-                                                itemClickAction: heya 
-                                            }"></div> <!--TODO Rename Me -->
-                                        </li>
-                                        <li>
-                                            <div id="remove-visit-filter" style="max-width:200px"></div>
-                                        </li>
-                                    </ul>
-                                
-                                </div>
-                        
-                                <div style="width:100%">
-                                    <center><button id="download-CSV" type="submit" style="max-width:400px;">Download as CSV</button></center>
-                                </div>
-                            
-                            </div>
-                        </div>
-            
-
-                        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="false">
-                            <h3>Change in percent of authorizations with at least one 31 day gap in service in the reporting period</h3>
-                            <div data-role="collapsible" data-collapsed-icon="arrow-r" data-collapsed="false">
-                                <div class="ui-grid-a ui-responsive">
-
-                                    <div class="ui-block-a">
-                                        <div class="ui-bar ui-bar-a" style="background-color:white;">
-                                            <div id="chart-TCM-01-02" class="kpiChart"></div>
-                                        </div>
-                                    </div>
-                            
-                                    <div class="ui-block-b">
-                                        <div class="ui-bar ui-bar-c">
-                                            <div ng-controller="comharCtrl">
-                                                <div data-role="collapsible" ng-repeat ="item in data | limitTo: 8" jquery-create>
-                                                    <h3>{{ item.Heading }}</h3>
-                                                    <p>{{ item.Text }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div ng-controller="comharCtrl">
-                        <div>
-                            <div ng-repeat="kpi in namesandIds" jquery-create>
-                                <div test-kpi></div>
-                            </div>
+                   
                         </div>
                     </div>
-                </div>
+                
 
 
 

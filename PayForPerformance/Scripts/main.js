@@ -48,7 +48,7 @@
         "jquery": "jquery-1.11.2.min",
         "Globalize": "globalize.min",
         "underscore": "underscore.min",
-        "angular": "angular-1.3.5.min",
+        "angular": "angular-1.2.9.min",
         "angularSanitize": "./angular-sanitize.min",
         "dxAll": "dxWebApps",
         "app": "./app/app",
@@ -77,11 +77,12 @@ require(["jquery",
     "controller",
     "factories",
     "app"], function(jquery, jqueryMobile, Globalize, comharApp, _, dataUtilities, chartModules, DevExpress, csvConverter, dashboard, highchartsMore, angular, angularSanitize, controller, factories, ComharNGApp) {
+    console.log(jqueryMobile)
 
 
       angular.element(document).ready(function() {
 
-        document.body.className = document.body.className.replace("no-js","");
+        angular.element('#form1').removeClass("no-js");
         document.body.className = document.body.className.replace("dx-theme-generic dx-theme-generic-typography dx-color-scheme-light","");
         angular.bootstrap(document, ['ComharNGApp']);
       });

@@ -8,5 +8,3 @@
   comharApp.DataUtilities = {};
   return comharApp
 });
-
-

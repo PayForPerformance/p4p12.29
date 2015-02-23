@@ -19,9 +19,10 @@
         var functionName = "tcmChart0" + id;
         var element = "#chart-" + id;
         var $element = $(element);
+        console.log(comharApp.charts)
         //TEMPORARY BUGFIX
         if ( id !== 1 ) { 
-          comharApp.highCharts[functionName]($element, comharApp.KPIData);
+          comharApp.charts.highCharts[functionName]($element, comharApp.KPIData);
         }
       }
     });
@@ -55,9 +56,9 @@
             var complianceData = comharApp.DataModules.getMonthlyCompliance();
             comharApp.charts.highCharts.tcmChart0102(angular.element('#chart-TCM-01-02'), complianceData);
           });
-          });
-
+            
         });
+      });
 
   }]);
 
@@ -83,14 +84,17 @@
   }]);
 
   comharControllers.controller('gridCtrl', ['$scope', function($scope) {
+    $scope.Text = 'Show Filters';
     $scope.filterMenuData = ['Filter Same Day Visits', 'Limit to Start of Fiscal Year'];
-    $scope.heya = function heya(event) { 
-      console.log(event)
+    $scope.filterSelect = function filterSelect(event) { 
+      
       var text = event.itemData;
-      console.log(text)
+
       comharApp.DataUtilities.parseFilter(text, function() {
+
         k = new Program(0, $('#gridContainer'));
         k.init().setGrid(comharApp.ActiveData).loadChart();
+
       });
     }
   }]);
