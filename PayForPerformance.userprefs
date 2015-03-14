@@ -1,15 +1,16 @@
-﻿<Properties>
+﻿<Properties StartupItem="PayForPerformance/PayForPerformance.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PayForPerformance/Scripts/app/controller.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PayForPerformance/Scripts/main.js">
     <Files>
-      <File FileName="PayForPerformance/index.html" Line="45" Column="45" />
-      <File FileName="PayForPerformance/Scripts/dashboard-1.0.0.js" Line="7" Column="7" />
-      <File FileName="PayForPerformance/Scripts/comhar-namespacing.js" Line="1" Column="1" />
-      <File FileName="PayForPerformance/Scripts/addDataGrid.js" Line="56" Column="56" />
-      <File FileName="PayForPerformance/Scripts/app/controller.js" Line="45" Column="45" />
-      <File FileName="PayForPerformance/Scripts/app/app.js" Line="5" Column="5" />
-      <File FileName="PayForPerformance/Scripts/jasmine/spec/ComharAppSpec.js" Line="60" Column="60" />
-      <File FileName="PayForPerformance/Scripts/program.js" Line="130" Column="130" />
+      <File FileName="PayForPerformance/Scripts/app/controller.js" Line="112" Column="11" />
+      <File FileName="PayForPerformance/Scripts/app/app.js" Line="13" Column="7" />
+      <File FileName="PayForPerformance/Scripts/app/factories.js" Line="67" Column="46" />
+      <File FileName="PayForPerformance/Scripts/main.js" Line="65" Column="13" />
+      <File FileName="PayForPerformance/Scripts/chart-modules.js" Line="1" Column="1" />
+      <File FileName="PayForPerformance/Scripts/json2csv.js" Line="60" Column="45" />
+      <File FileName="PayForPerformance/Scripts/addDataGrid.js" Line="77" Column="27" NotebookId="1" />
+      <File FileName="PayForPerformance/index.html" Line="1" Column="1" NotebookId="1" />
+      <File FileName="PayForPerformance/Scripts/dashboard-1.0.0.js" Line="22" Column="7" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
