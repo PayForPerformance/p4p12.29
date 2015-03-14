@@ -276,17 +276,14 @@
     <Content Include="Scripts\jasmine\spec\PlayerSpec.js" />
     <Content Include="Scripts\jasmine\spec\SpecHelper.js" />
     <Content Include="packages.config" />
-    <Content Include="test.html" />
     <Content Include="index.html" />
     <Content Include="Scripts\chart-modules.js" />
-    <Content Include="Scripts\devExGauge.js" />
     <Content Include="Scripts\encounterDetail.js" />
     <Content Include="Scripts\json2csv.js" />
     <Content Include="Scripts\KPIInfo.js" />
     <Content Include="Scripts\summary.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <None Include="Properties\PublishProfiles\PayForPerformance.pubxml" />
-    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -305,27 +302,19 @@
     <Content Include="Scripts\angular-1.3.5.min.js" />
     <Content Include="Scripts\app\app.js" />
     <None Include="Scripts\underscore.min.map" />
-    <Content Include="Scripts\data-modules.js" />
-    <None Include="Scripts\EmptyTextFile.txt" />
-    <Content Include="Scripts\angularAMD.min.js" />
     <Content Include="Scripts\main.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.11.2.min.js" />
     <Content Include="Scripts\angular-1.2.9.min.js" />
+    <Content Include="Scripts\app\program-factory.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\CLogo.png" />
     <Content Include="Scripts\addDataGrid.js" />
     <Content Include="Scripts\dashboard-1.0.0.js" />
-    <Content Include="Scripts\dataGrid.js" />
-    <Content Include="Scripts\dxAll.js" />
     <Content Include="Scripts\highcharts-more.js" />
     <Content Include="Scripts\highcharts-more.src.js" />
     <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\highcharts.src.js" />
-    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\themes\dark-blue.js" />
     <Content Include="Scripts\themes\dark-green.js" />
     <Content Include="Scripts\themes\dark-unica.js" />

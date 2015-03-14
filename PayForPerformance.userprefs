@@ -1,18 +1,16 @@
 ﻿<Properties StartupItem="PayForPerformance/PayForPerformance.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PayForPerformance/index.html">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PayForPerformance/Scripts/main.js">
     <Files>
-      <File FileName="PayForPerformance/Scripts/dashboard-1.0.0.js" Line="79" Column="79" />
-      <File FileName="PayForPerformance/Scripts/addDataGrid.js" Line="23" Column="23" />
-      <File FileName="PayForPerformance/Scripts/app/controller.js" Line="141" Column="141" />
-      <File FileName="PayForPerformance/Scripts/comhar-namespacing.js" Line="3" Column="3" />
-      <File FileName="PayForPerformance/Scripts/data-modules.js" Line="50" Column="50" />
-      <File FileName="PayForPerformance/Scripts/app/app.js" Line="3" Column="3" />
-      <File FileName="PayForPerformance/Scripts/app/factories.js" Line="57" Column="57" />
-      <File FileName="PayForPerformance/Scripts/main.js" Line="126" Column="126" />
-      <File FileName="PayForPerformance/Scripts/data-utilities.js" Line="52" Column="52" />
-      <File FileName="PayForPerformance/Scripts/chart-modules.js" Line="30" Column="30" />
-      <File FileName="PayForPerformance/index.html" Line="1" Column="1" />
+      <File FileName="PayForPerformance/Scripts/app/controller.js" Line="112" Column="11" />
+      <File FileName="PayForPerformance/Scripts/app/app.js" Line="13" Column="7" />
+      <File FileName="PayForPerformance/Scripts/app/factories.js" Line="67" Column="46" />
+      <File FileName="PayForPerformance/Scripts/main.js" Line="65" Column="13" />
+      <File FileName="PayForPerformance/Scripts/chart-modules.js" Line="1" Column="1" />
+      <File FileName="PayForPerformance/Scripts/json2csv.js" Line="60" Column="45" />
+      <File FileName="PayForPerformance/Scripts/addDataGrid.js" Line="77" Column="27" NotebookId="1" />
+      <File FileName="PayForPerformance/index.html" Line="1" Column="1" NotebookId="1" />
+      <File FileName="PayForPerformance/Scripts/dashboard-1.0.0.js" Line="22" Column="7" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
