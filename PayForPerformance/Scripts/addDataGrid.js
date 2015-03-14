@@ -38,6 +38,7 @@ define(['comhar-namespacing', 'dxAll'], function(comharApp, DevExpress) {
         }
       });
     },
+    
     setGrid : function(dataSet) {
       var _this = this;
       this.dataGridContainer.dxDataGrid({
@@ -63,6 +64,7 @@ define(['comhar-namespacing', 'dxAll'], function(comharApp, DevExpress) {
       });
       return this;
     }, 
+
     loadChart : function (percentCompliant) {
 
       comharApp.KPIData[this.KPINUMBER].CompliancePercent = percentCompliant;
@@ -70,6 +72,7 @@ define(['comhar-namespacing', 'dxAll'], function(comharApp, DevExpress) {
       comharApp.charts.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
       return this;
     },
+
     addColumnChooserLabel : function() {
     var colLabel ='<p style="float:right; padding-left:22px;">Column Chooser:</p>';
     $colheader = $('.dx-datagrid-header-panel');
