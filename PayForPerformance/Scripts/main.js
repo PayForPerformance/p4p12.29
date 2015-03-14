@@ -38,10 +38,6 @@
       "comhar-namespacing": {
         exports: 'comharApp'
       }, 
-      dataUtilities: {
-        deps: ['comhar-namespacing'],
-        exports: 'data-utilities'
-      }
       
     },
     paths: {
@@ -55,8 +51,7 @@
         "controller": "./app/controller",
         "factories": "./app/factories",
         "dashboard": "dashboard-1.0.0",
-
-
+        "program-factory": "./app/program-factory"
     },
 
 });
@@ -66,7 +61,6 @@ require(["jquery",
     "Globalize",
     "comhar-namespacing",
     "underscore",
-    "data-utilities",
     "chart-modules", 
     "dxAll",
     "json2csv",
@@ -76,15 +70,30 @@ require(["jquery",
     "angularSanitize", 
     "controller",
     "factories",
-    "app"], function(jquery, jqueryMobile, Globalize, comharApp, _, dataUtilities, chartModules, DevExpress, csvConverter, dashboard, highchartsMore, angular, angularSanitize, controller, factories, ComharNGApp) {
-    console.log(jqueryMobile)
+    "app"], function(jquery, jqueryMobile, Globalize, comharApp, _, chartModules, DevExpress, csvConverter, dashboard, highchartsMore, angular, angularSanitize, controller, factories, ComharNGApp) {
+   
+    angular.element(document).ready(function() {
+      //Mobile loading is hidden in app/controller.js -- programCtrl
+      $.mobile.loading("show");
 
+      //Make Elements Visible right before Bootstrap Event
+      angular.element('#form1').removeClass("no-js");
+    
+      //Put DevExpress themes before jQuery. 
+      document.body.className = document.body.className.replace("dx-theme-generic dx-theme-generic-typography dx-color-scheme-light","");
 
-      angular.element(document).ready(function() {
+      angular.bootstrap(document, ['ComharNGApp']);
 
-        angular.element('#form1').removeClass("no-js");
-        document.body.className = document.body.className.replace("dx-theme-generic dx-theme-generic-typography dx-color-scheme-light","");
-        angular.bootstrap(document, ['ComharNGApp']);
+      $(document).bind('mobileinit', function () {
+        $.mobile.selectmenu.prototype.options.nativeMenu = false;
       });
-      
+
+      $('#download-CSV').click(function() {
+        csvConverter.convert(comharApp.ActiveData);
+      });
+
+      //Resolves sidebar padding issue. 
+      $('#leftPanel > .ui-panel-inner').css({'padding': '0em'});
+
+    });
 });

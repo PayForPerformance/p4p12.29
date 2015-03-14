@@ -380,9 +380,9 @@
         rangeContainer: {
           offset: 10,
           ranges: [
-          { startValue: summaryData[0]["RedFrom"], endValue: summaryData[0]["RedTo"], color: '#92000A' },
-          { startValue: summaryData[0]["YellowFrom"], endValue: summaryData[0]["YellowTo"], color: '#E6E200' },
-          { startValue: summaryData[0]["GreenFrom"], endValue: summaryData[0]["GreenTo"], color: '#77DD77' }
+          { startValue: summaryData[0].RedFrom, endValue: summaryData[0].RedTo, color: '#92000A' },
+          { startValue: summaryData[0].YellowFrom, endValue: summaryData[0].YellowTo, color: '#E6E200' },
+          { startValue: summaryData[0].GreenFrom, endValue: summaryData[0].GreenTo, color: '#77DD77' }
           ]
         },
         size: {

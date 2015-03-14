@@ -1,14 +1,28 @@
-﻿define(['angular', 'addDataGrid', 'data-modules', 'comhar-namespacing','chart-modules'], function(angular, Program, dataUtilities, comharApp) {
+﻿define(['angular', 'comhar-namespacing', 'chart-modules', 'program-factory'], function(angular, comharApp, chartModules, programInstance) {
+  var baseUrl = window.location.protocol + '//' + window.location.hostname + "/";
+
+  var encounterDetailSourceUrl = "Scripts/encounterDetail.js";
+  var summarySourceUrl = "Scripts/summary.js";
+//  var summarySourceUrl = baseUrl + "PayForPerformanceWebApi/api/summary"
+//  var encounterDetailSourceUrl = baseUrl + "PayForPerformanceWebApi/api/encounterDetail"
 
   var comharControllers = angular.module('comharControllers', ['dateLookup']);
 
-  comharControllers.controller('comharCtrl', ['$scope', '$http', 'comharFunctions',
-    function ($scope, $http, comharFunctions) {
+  comharControllers.controller('comharCtrl', ['$scope', '$http', 'comharDataFunctions',
+
+
+    function ($scope, $http, comharDataFunctions) {
+
+      var summarySourceUrl = "Scripts/summary.js";
+    //  var summarySourceUrl = baseUrl + "PayForPerformanceWebApi/api/summary"
+      $http.get(summarySourceUrl).success(function(summaryData) {
+        comharApp.KPIData = summaryData;
+      });
 
     $http.get('Scripts/KPIInfo.js').success(function(data) {
       $scope.data = angular.fromJson(data);
 
-      $scope.namesandIds = comharFunctions.getNamesAndIds(data);
+      $scope.namesandIds = comharDataFunctions.getNamesAndIds(data);
 
       $scope.setSelectedId = function(id) {
         $scope.selectedId = id;
@@ -19,7 +33,7 @@
         var functionName = "tcmChart0" + id;
         var element = "#chart-" + id;
         var $element = $(element);
-        console.log(comharApp.charts)
+
         //TEMPORARY BUGFIX
         if ( id !== 1 ) { 
           comharApp.charts.highCharts[functionName]($element, comharApp.KPIData);
@@ -29,42 +43,48 @@
   }]);
 
 
-  comharControllers.controller('programCtrl', ['dateLookup','$scope', '$http', function (dateLookup, $scope, $http) {
-      $http.get('Scripts/encounterDetail.js').success(function(encounterData) {
+  comharControllers.controller('programCtrl', ['comharDataFunctions', 'dateLookup', 'programInstance', '$scope', '$http', function (comharDataFunctions, dateLookup, programInstance, $scope, $http) {
+
+    var encounterDetailSourceUrl = "Scripts/encounterdetail3.js";
+//    var encounterDetailSourceUrl = baseUrl + "PayForPerformanceWebApi/api/encounterDetail"
+
+      $http.get(encounterDetailSourceUrl).success(function(encounterData) {
         $http.get('Scripts/program.js').success(function(programs) {
 
           $scope.programs = angular.fromJson(programs);
-          var fixedDataSet = comharApp.DataModules.fixDates(encounterData);
-          comharApp.EncounterData = fixedDataSet;
 
-          comharApp.ActiveData = comharApp.DataModules.filterYear();
+          //Iterate over JSON, cache the EncounterData with new Date objects for Encounter Start / End Date. 
+          comharApp.EncounterData = comharDataFunctions.fixDates(encounterData);
 
-          p = new Program(0, angular.element('#gridContainer')).init().setGrid(comharApp.ActiveData).loadChart();
-          comharApp.charts.dxChart.tcmChart01($('#chart2-TCM-01-01'), comharApp.KPIData);
-          var complianceData = comharApp.DataModules.getMonthlyCompliance();
+          //Instantiate new Program
+          var percentCompliant = comharDataFunctions.findCompliancePercentage();
+          programInstance.newProgram(percentCompliant);
+
+          //Find data for second chart
+          var complianceData = comharDataFunctions.getMonthlyCompliance();
+         
           comharApp.charts.highCharts.tcmChart0102($('#chart-TCM-01-02'), complianceData);
 
+          $.mobile.loading("hide");
 
+          //set the 'ActiveData' cache based on selected year.
+          comharDataFunctions.setActiveData();
 
           $scope.$on('Year Changed', function() {
-            comharApp.ActiveData = comharApp.DataModules.filterYear();
-            program = new Program(0, $('#gridContainer'));
-            program.init()
-              .setGrid(comharApp.ActiveData)
-              .loadChart();
-            
-            var complianceData = comharApp.DataModules.getMonthlyCompliance();
-            comharApp.charts.highCharts.tcmChart0102(angular.element('#chart-TCM-01-02'), complianceData);
+            comharDataFunctions.setActiveData();
+            percentCompliant = comharDataFunctions.findCompliancePercentage()
+            programInstance.newProgram(percentCompliant);
           });
-            
+
+
         });
       });
 
   }]);
 
-
   comharControllers.controller('dateCtrl', ['dateLookup', '$scope',
     function (dateLookup, $scope, $http) {
+
       dateLookup.getYears().success(function() {
         $scope.years = dateLookup.years;
         $scope.selected = $scope.years[2];
@@ -83,20 +103,25 @@
     $scope.setSelected = dateLookup.setSelected;
   }]);
 
-  comharControllers.controller('gridCtrl', ['$scope', function($scope) {
+  comharControllers.controller('gridCtrl', ['$scope', 'comharDataFunctions', 'programInstance', function($scope, comharDataFunctions, programInstance) {
     $scope.Text = 'Show Filters';
-    $scope.filterMenuData = ['Filter Same Day Visits', 'Limit to Start of Fiscal Year'];
+    $scope.RemoveText = 'Remove Filters';
+    $scope.filterMenuData = ['Show Same Day Visits', 'Show All Visits Ending This Year'];
     $scope.filterSelect = function filterSelect(event) { 
       
       var text = event.itemData;
 
-      comharApp.DataUtilities.parseFilter(text, function() {
+      comharDataFunctions.parseFilter(text);
 
-        k = new Program(0, $('#gridContainer'));
-        k.init().setGrid(comharApp.ActiveData).loadChart();
-
-      });
+      var percentCompliant = comharDataFunctions.findCompliancePercentage();
+      programInstance.newProgram(percentCompliant);
     }
+
+    $scope.removeFilters = function removeFilters() {
+      comharDataFunctions.setActiveData();
+      var percentCompliant = comharDataFunctions.findCompliancePercentage();
+      programInstance.newProgram(percentCompliant);
+    } 
   }]);
 
   return comharControllers;
