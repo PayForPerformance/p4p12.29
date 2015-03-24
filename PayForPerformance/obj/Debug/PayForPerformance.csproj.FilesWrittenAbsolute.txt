@@ -16,3 +16,8 @@
 /Users/brendan/dev/p4p-12.29-expand-markup/PayForPerformance/bin/PayForPerformance.dll
 /Users/brendan/dev/p4p-12.29-expand-markup/PayForPerformance/obj/Debug/PayForPerformance.dll
 /Users/brendan/dev/p4p-12.29-expand-markup/PayForPerformance/obj/Debug/PayForPerformance.dll.mdb
+/Users/brendan/dev/prj/p4p12.29/PayForPerformance/obj/Debug/.NETFramework,Version=v4.5.1.AssemblyAttribute.cs
+/Users/brendan/dev/prj/p4p12.29/PayForPerformance/bin/PayForPerformance.dll.mdb
+/Users/brendan/dev/prj/p4p12.29/PayForPerformance/bin/PayForPerformance.dll
+/Users/brendan/dev/prj/p4p12.29/PayForPerformance/obj/Debug/PayForPerformance.dll
+/Users/brendan/dev/prj/p4p12.29/PayForPerformance/obj/Debug/PayForPerformance.dll.mdb

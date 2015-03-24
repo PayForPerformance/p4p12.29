@@ -50,7 +50,6 @@
         "app": "./app/app",
         "controller": "./app/controller",
         "factories": "./app/factories",
-        "dashboard": "dashboard-1.0.0",
         "program-factory": "./app/program-factory"
     },
 
@@ -64,13 +63,12 @@ require(["jquery",
     "chart-modules", 
     "dxAll",
     "json2csv",
-    "dashboard",
     "highcharts-more",
     "angular",
     "angularSanitize", 
     "controller",
     "factories",
-    "app"], function(jquery, jqueryMobile, Globalize, comharApp, _, chartModules, DevExpress, csvConverter, dashboard, highchartsMore, angular, angularSanitize, controller, factories, ComharNGApp) {
+    "app"], function(jquery, jqueryMobile, Globalize, comharApp, _, chartModules, DevExpress, csvConverter, highchartsMore, angular, angularSanitize, controller, factories, ComharNGApp) {
    
     angular.element(document).ready(function() {
       //Mobile loading is hidden in app/controller.js -- programCtrl
